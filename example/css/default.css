@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans" Tahoma, Helvetica, sans-serif !important;
+}
+
+h1 {
+    font-weight: 100;
+    font-size: 26px;
+}
+
+h2 {
+    font-weight: 100;
+    color: darkgray;
+    font-size: 20px;
+}

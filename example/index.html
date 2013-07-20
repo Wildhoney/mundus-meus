@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC"-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+
+    <title>Mundus Meus!</title>
+
+    <script type="text/javascript" src="../lib/jquery-1.10.1.js"></script>
+    <script type="text/javascript" src="../lib/leaflet-0.6.3.js"></script>
+    <script type="text/javascript" src="../node_modules/mustache/mustache.js"></script>
+    <script type="text/javascript" src="../packages/mundus-meus/mundus-meus.js"></script>
+    <script type="text/javascript" src="js/view.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/mundus-meus.css" />
+    <link rel="stylesheet" type="text/css" href="css/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="css/leaflet.ie.css" />
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />-->
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+    <div class="mundus-meus">
+
+        <div class="geolocation">
+
+            <h1>My Location</h1>
+
+            <div class="form">
+                <input type="text" class="search" placeholder="Search for a particular place..." value="Nottingham" />
+                <input type="button" class="btn" value="Find..." />
+            </div>
+
+            <ul class="geolocation-results">
+
+                {{#isLoading}}<li class="loading">Loading...</li>{{/isLoading}}
+
+                {{#results}}
+                    <li>{{city}}, {{country}}.</li>
+                {{/results}}
+
+            </ul>
+
+        </div>
+
+        <div class="search">
+
+            <h1>Search Results</h1>
+
+        </div>
+
+        <div class="map"></div>
+
+    </div>
+
+</body>
+</html>

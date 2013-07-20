@@ -64,6 +64,8 @@ abstract class Geolocator_Abstract implements Interface_Module {
             });
         }
 
+        $results = array_values($results);
+
         return json_encode($results);
 
     }
