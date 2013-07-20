@@ -12,11 +12,10 @@ Mundus Meus defines two API routes:
 Technologies
 -----------
 
- * <em>Grunt.js</em>: Build process for the JavaScript/CSS/HTML;
- * <em>PHP 5.4</em>: API backend for place discovery/entity finder;
  * <em><a href="http://nominatim.openstreetmap.org/" target="_blank">Nominatim API</a></em>: For resolving places to latitude/longitude values;
- * <em><a href="http://www.leafletjs.com/" target="_blank">Nominatim API</a></em>: Leaflet.JS for the maps;
+ * <em><a href="http://www.leafletjs.com/" target="_blank">Leaflet.js</a></em>: For all of the mapping functionality;
  * <em><a href="http://mustache.github.io/" target="_blank">Mustache</a>: For the JavaScript template engine;</em>
+ * <em><a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a></em>: Build process for the JavaScript/CSS/HTML;
 
 Etymology
 -----------
