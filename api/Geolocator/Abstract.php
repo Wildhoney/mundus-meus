@@ -7,7 +7,7 @@ namespace MundusMeus;
  * @class Geolocator_Abstract
  * @package MundusMeus
  */
-abstract class Geolocator_Abstract {
+abstract class Geolocator_Abstract implements Interface_Module {
 
     /**
      * @var $query
@@ -24,6 +24,7 @@ abstract class Geolocator_Abstract {
 
     /**
      * @method _parseResults
+     * @return string
      * @abstract
      * @protected
      */

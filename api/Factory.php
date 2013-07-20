@@ -4,16 +4,22 @@ namespace MundusMeus;
 
 /**
  * @module MundusMeus
- * @class Service
+ * @class Factory
  * @package MundusMeus
  */
 class Factory {
 
     /**
-     * @const SERVICE_NOMINATIM
-     * @type {String}
+     * @const GEOLOCATOR_NOMINATIM
+     * @type string
      */
-    const SERVICE_NOMINATIM = 'Geolocator_Nominatim';
+    const GEOLOCATOR_NOMINATIM = 'Geolocator_Nominatim';
+
+    /**
+     * @const SERVICE_TESCO
+     * @type string
+     */
+    const SERVICE_TESCO = 'Service_Tesco';
 
     /**
      * @var $_instance
@@ -49,19 +55,40 @@ class Factory {
 
     /**
      * @method getGeolocator
-     * @param $serviceName
+     * @param $name
      * @throws \Exception
      * @return \MundusMeus\Geolocator_Abstract
      */
-    public function getGeolocator($serviceName) {
+    public function getGeolocator($name) {
+        return $this->_include($name);
+    }
 
-        list ($prefix, $name)   = explode('_', $serviceName);
+    /**
+     * @method getService
+     * @param $name
+     * @throws \Exception
+     * @return \MundusMeus\Service_Abstract
+     */
+    public function getService($name) {
+        return $this->_include($name);
+    }
+
+    /**
+     * @method _include
+     * @param $factoryClassName
+     * @return Interface_Module
+     * @throws \Exception
+     * @private
+     */
+    private function _include($factoryClassName) {
+
+        list ($prefix, $name)   = explode('_', $factoryClassName);
         $filePath               = sprintf('%s%s%s.php', $prefix, DIRECTORY_SEPARATOR, $name);
-        $className              = sprintf('\\%s\\%s', __NAMESPACE__, $serviceName);
+        $className              = sprintf('\\%s\\%s', __NAMESPACE__, $factoryClassName);
 
         if (!file_exists($filePath)) {
             // If we're unable to find the service class then we'll throw an exception.
-            throw new \Exception(sprintf('Unable to locate service class "%s" for instantiation.', $serviceName));
+            throw new \Exception(sprintf('Unable to locate class "%s" for inclusion and instantiation.', $name));
         }
 
         // Otherwise can include the service class, and then instantiate it.
