@@ -22,10 +22,10 @@ switch (Params::get('type')) {
     case ('location'):
 
         // Instantiate the desired service class via the factory.
-        $service = Factory::getInstance()->getGeolocator(Factory::GEOLOCATOR_NOMINATIM);
-        $service->restrictCountry('United Kingdom');
-        $service->setQuery(Params::get('query'));
-        echo $service->getJSON();
+        $geolocator = Factory::getInstance()->getGeolocator(Factory::GEOLOCATOR_NOMINATIM);
+        $geolocator->restrictCountry('United Kingdom');
+        $geolocator->setQuery(Params::get('query'));
+        echo $geolocator->getJSON();
         break;
 
     case ('entities'):
