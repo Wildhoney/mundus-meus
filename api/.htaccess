@@ -1,0 +1,12 @@
+# Enable Rewriting
+RewriteEngine on
+
+# Rewrite entities URL
+#   Input:  :latitude/:longitude
+#   Output: Default.php?type=entities&latitude=x&longitude=y
+RewriteRule ^Search/(.+?)/(.+?)/?$ Default.php?type=entities&latitude=$1&longitude=$2
+
+# Rewrite locator URL
+#   Input:  :query
+#   Output: Default.php?type=locator&query=x
+RewriteRule ^Geolocate/(.+?)/?$ Default.php?type=location&query=$1
