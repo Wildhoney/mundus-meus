@@ -1,2 +1,2 @@
-mundus-meus
+Mundus Meus 0.1.0
 ===========
