@@ -14,7 +14,7 @@ abstract class Service_Abstract implements Interface_Module {
      * @type integer
      * @default 3959
      */
-    const EARTH_RADIUS_MILES    = 3959;
+    const EARTH_RADIUS_MILES = 3959;
 
     /**
      * @var $_latitude

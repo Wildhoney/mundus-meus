@@ -3,7 +3,7 @@
 namespace MundusMeus;
 
 date_default_timezone_set('Europe/London');
-ini_set('display_errors', true);
+ini_set('display_errors', false);
 
 include 'Interface.php';
 include 'Factory.php';
