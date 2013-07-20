@@ -1,5 +1,5 @@
 {
-  "name": "Mundus Meus",
+  "name": "MundusMeus",
   "version": "0.1.0",
   "author": "Adam Timberlake",
   "devDependencies": {
@@ -10,6 +10,10 @@
     "url": "git://git@github.com:Wildhoney/mundus-meus.git"
   },
   "dependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-jasmine": "~0.5.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-yuidoc": "~0.4.0"
   }
 }
