@@ -14,6 +14,8 @@ Mundus Meus defines two API routes:
 Technologies
 -----------
 
+<img src="http://angularjs.org/img/AngularJS-large.png" alt="Using Angular.js" />
+
  * <em><a href="http://nominatim.openstreetmap.org/" target="_blank">Nominatim API</a></em>: For resolving places to latitude/longitude values;
  * <em><a href="http://angularjs.org/" target="_blank">Angular.js</a></em>: Utilised for the front-end example and API;
  * <em><a href="http://lesscss.org/" target="_blank">LESS</a></em>: Preprocessor for more organised stylesheets;
