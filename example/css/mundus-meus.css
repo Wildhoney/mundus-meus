@@ -63,11 +63,11 @@ div.mundus-meus:hover {
 
 div.mundus-meus ul.search {
     border: 1px solid white;
-    height: 300px;
+    height: 290px;
     position: absolute;
-    bottom: 40px;
+    bottom: 45px;
     left: 110px;
-    width: 280px;
+    width: 270px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .45);
     /*padding: 5px;*/
     z-index: 1000;
@@ -93,6 +93,12 @@ div.mundus-meus ul.search li {
     font-size: 12px;
     cursor: pointer;
     position: relative;
+}
+
+div.mundus-meus ul.search li h2 {
+    font-size: 15px;
+    color: darkgray;
+    text-transform: uppercase;
 }
 
 div.mundus-meus ul.search li:first-letter {
@@ -122,7 +128,7 @@ div.mundus-meus ul.search li div.distance {
     color: white;
 }
 
-div.mundus-meus ul.search li:hover {
+div.mundus-meus ul.search li:not(.title):hover {
     background: -webkit-linear-gradient(top, rgba(147,183,223,1) 0%, rgba(119,162,210,1) 100%);
     border-bottom: 1px solid #6c95c3;
     color: white;

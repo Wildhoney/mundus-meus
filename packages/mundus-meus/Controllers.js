@@ -56,7 +56,8 @@ function SearchCtrl($scope, $http, $mundusMeus) {
 
     var URL_SEARCH = './../api/Search/';
 
-    $scope.active = false;
+    $scope.active   = false;
+    $scope.results  = [];
 
     $scope.findMarker = function(model) {
         $mundusMeus.toLocation(model.latitude, model.longitude);
@@ -68,8 +69,8 @@ function SearchCtrl($scope, $http, $mundusMeus) {
 
         $http.get(url).success(function(data) {
             $scope.results = data;
-            $mundusMeus.plotMarkers(data);
             $scope.display = true;
+            $mundusMeus.plotMarkers(data);
         });
 
     });
