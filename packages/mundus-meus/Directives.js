@@ -4,9 +4,9 @@
  * @type {Function}
  * Container for the Leaflet map.
  */
-app.directive('map', ['$mundusMeus', function($mundusMeus) {
+app.directive('map', function() {
 
-    return { restrict: 'E', link: function($scope, $element) {
+    return { restrict: 'E', link: function linkFn($scope, $element) {
 
         var mapElement = $element[0];
 
@@ -35,9 +35,8 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
 
         });
 
-    }}}
-
-]);
+    }}
+});
 
 /**
  * @directive find-location
@@ -47,7 +46,7 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
  */
 app.directive('findLocation', function() {
 
-    return { restrict: 'A', link: function($scope, $element) {
+    return { restrict: 'A', link: function linkFn($scope, $element) {
         $element.bind('click', function() {
             $scope.active = true;
             $scope.$apply();
@@ -56,9 +55,15 @@ app.directive('findLocation', function() {
 
 });
 
-app.directive('searchDisplay', ['$mundusMeus', function($mundusMeus) {
+/**
+ * @directive open-location-results
+ * @restrict A
+ * @type {Function}
+ * Opens the results that relate to the region the user clicked on.
+ */
+app.directive('openLocationResults', ['$mundusMeus', function($mundusMeus) {
 
-    return { restrict: 'A', link: function($scope, $element) {
+    return { restrict: 'A', link: function linkFn($scope, $element) {
         $element.bind('click', function() {
             $mundusMeus.openSearchResults();
         });

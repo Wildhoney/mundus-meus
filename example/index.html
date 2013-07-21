@@ -38,7 +38,7 @@
             </div>
 
             <ul class="geolocation-results" ng-hide="{{results.length}}">
-                <li search-display ng-repeat="result in results" ng-click="setGeolocation(result);">
+                <li open-location-results ng-repeat="result in results" ng-click="setGeolocation(result);">
                     {{result.city}}, {{result.country}}
                 </li>
             </ul>
