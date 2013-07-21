@@ -34,7 +34,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
     $scope.getGeolocation = function(name) {
 
         $scope.location = name;
-        var url = $scope.$eval($interpolate(URL_GEOLOCATE));
+        var url         = $scope.$eval($interpolate(URL_GEOLOCATE));
 
         $http.get(url).success(function(data) {
             $scope.results = data;
@@ -52,12 +52,13 @@ GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$mundusMeus'];
  * @param $mundusMeus {Object}
  * @constructor
  */
-function SearchCtrl($scope, $http, $mundusMeus) {
+function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
 
-    var URL_SEARCH = './../api/Search/';
+    var URL_SEARCH = './../api/Search/{{position.latitude}}/{{position.longitude}}';
 
     $scope.active   = false;
     $scope.results  = [];
+    $scope.position = { latitude: null, longitude: null };
 
     $scope.findMarker = function(model) {
         $mundusMeus.toLocation(model.latitude, model.longitude);
@@ -65,7 +66,9 @@ function SearchCtrl($scope, $http, $mundusMeus) {
 
     $scope.$on('entityName', function(context, data) {
 
-        var url = URL_SEARCH + data.lat + '/' + data.lon;
+        $scope.position.latitude    = data.lat;
+        $scope.position.longitude   = data.lon;
+        var url                     = $scope.$eval($interpolate(URL_SEARCH));
 
         $http.get(url).success(function(data) {
             $scope.results = data;
@@ -80,7 +83,7 @@ function SearchCtrl($scope, $http, $mundusMeus) {
     });
 
 }
-SearchCtrl.$inject = ['$scope', '$http', '$mundusMeus'];
+SearchCtrl.$inject = ['$scope', '$http', '$interpolate', '$mundusMeus'];
 
 /**
  * @class MapCtrl
