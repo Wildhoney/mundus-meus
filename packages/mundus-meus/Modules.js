@@ -20,3 +20,15 @@ app.factory('$entitySearch', function($rootScope) {
 
     return service;
 });
+
+app.factory('$entityInitialise', function($rootScope) {
+
+    var service = {};
+
+    service.open = function() {
+        $rootScope.$broadcast('displaySearchResults');
+    };
+
+    return service;
+
+});

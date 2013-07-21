@@ -49,9 +49,11 @@ GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$entitySearch'];
  * @param $entitySearch {Object}
  * @constructor
  */
-function SearchCtrl($scope, $http, $entitySearch) {
+function SearchCtrl($scope, $http, $entitySearch, $entityInitialise) {
 
     var URL_SEARCH = './../api/Search/';
+
+    $scope.active = false;
 
     $scope.$on('entityName', function() {
 
@@ -59,12 +61,17 @@ function SearchCtrl($scope, $http, $entitySearch) {
 
         $http.get(url).success(function(data) {
             $scope.results = data;
+            $scope.display = true;
         });
 
     });
 
+    $scope.$on('displaySearchResults', function() {
+        $scope.active = true;
+    });
+
 }
-SearchCtrl.$inject = ['$scope', '$http', '$entitySearch'];
+SearchCtrl.$inject = ['$scope', '$http', '$entitySearch', '$entityInitialise'];
 
 /**
  * @class MapCtrl

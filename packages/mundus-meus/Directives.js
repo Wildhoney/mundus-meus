@@ -57,3 +57,13 @@ app.directive('geolocateText', function() {
     }};
 
 });
+
+app.directive('searchDisplay', ['$entityInitialise', function($entityInitialise) {
+
+    return { restrict: 'A', link: function($scope, $element) {
+        $element.bind('click', function() {
+            $entityInitialise.open();
+        });
+    }}}
+
+]);

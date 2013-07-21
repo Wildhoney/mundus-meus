@@ -7,7 +7,7 @@
     <script type="text/javascript" src="../lib/jquery-1.10.1.js"></script>
     <script type="text/javascript" src="../lib/leaflet-0.6.3.js"></script>
     <script type="text/javascript" src="../lib/angular-1.0.7.js"></script>
-    
+
     <script type="text/javascript" src="../packages/mundus-meus/Application.js"></script>
     <script type="text/javascript" src="../packages/mundus-meus/Modules.js"></script>
     <script type="text/javascript" src="../packages/mundus-meus/Controllers.js"></script>
@@ -38,15 +38,17 @@
             </div>
 
             <ul class="geolocation-results" ng-hide="{{results.length}}">
-                <li ng-repeat="result in results" ng-click="setGeolocation(result);">{{result.city}}, {{result.country}}</li>
+                <li search-display ng-repeat="result in results" ng-click="setGeolocation(result);">
+                    {{result.city}}, {{result.country}}
+                </li>
             </ul>
 
             <div class="message" ng-show="{{results.length}}">Loading...</div>
 
         </div>
 
-        <ul class="search" ng-controller="SearchCtrl">
-            <li ng-repeat="result in results">
+        <ul class="search" ng-class="{active:active}" ng-controller="SearchCtrl">
+            <li ng-repeat="result in results | orderBy: 'distance'">
                 <div class="name">{{result.name}}</div>
                 <div class="distance">{{result.distance | number: 2 }} mi</div>
             </li>
