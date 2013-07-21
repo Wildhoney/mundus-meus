@@ -4,7 +4,7 @@
  * @type {Function}
  * Container for the Leaflet map.
  */
-app.directive('map', function() {
+app.directive('map', ['$mundusMeus', function($mundusMeus) {
 
     return { restrict: 'E', link: function($scope, $element) {
 
@@ -19,9 +19,22 @@ app.directive('map', function() {
         // Insert the tile layer; can be changed by supplying the `tiles` attribute in the options.
         L.tileLayer('http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png').addTo(map);
 
-    }}
+        $scope.$on('positionUpdate', function(context, latitude, longitude) {
+            map.panTo(new L.LatLng(latitude, longitude));
+        });
 
-});
+        $scope.$on('plotMarkers', function(context, markers) {
+
+            markers.forEach(function(marker) {
+                var icon = L.divIcon({className: 'marker-icon', size: [100, 100]});
+                L.marker([marker.latitude, marker.longitude], {icon: icon}).addTo(map);
+            });
+
+        });
+
+    }}}
+
+]);
 
 /**
  * @directive geolocate-button
@@ -58,11 +71,11 @@ app.directive('geolocateText', function() {
 
 });
 
-app.directive('searchDisplay', ['$entityInitialise', function($entityInitialise) {
+app.directive('searchDisplay', ['$mundusMeus', function($mundusMeus) {
 
     return { restrict: 'A', link: function($scope, $element) {
         $element.bind('click', function() {
-            $entityInitialise.open();
+            $mundusMeus.openSearchResults();
         });
     }}}
 

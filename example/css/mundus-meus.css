@@ -9,21 +9,26 @@ div.mundus-meus {
     box-shadow: 0 0 5px rgba(0, 0, 0, .35);
 }
 
-div.mundus-meus div.leaflet-control-zoom {
-    border: 0 !important;
-}
-
 div.mundus-meus map {
     width: 100%;
     height: 100%;
     overflow: hidden;
     display: block;
-    -webkit-filter: blur(2px);
-    -webkit-transition: all .25s;
+    /*-webkit-filter: blur(2px);*/
+    /*-webkit-transition: all .25s;*/
+}
+
+div.mundus-meus map div.marker-icon {
+    background-color: #d14949;
+    border-radius: 40px;
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .55);
+    box-sizing: content-box;
+
 }
 
 div.mundus-meus map:hover {
-    -webkit-filter: blur(0);
+    /*-webkit-filter: blur(0);*/
 }
 
 div.mundus-meus div.geolocation {

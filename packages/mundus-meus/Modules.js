@@ -4,29 +4,31 @@
  * @type {Function}
  * @return {Object}
  */
-app.factory('$entitySearch', function($rootScope) {
+app.factory('$mundusMeus', function($rootScope) {
 
     var service = {};
 
     /**
      * @method setGeolocation
-     * @param placeName {String}
+     * @param data {String}
      * @return {void}
      */
-    service.setGeolocation = function(placeName) {
-        this.location = placeName;
-        $rootScope.$broadcast('entityName');
+    service.setGeolocation = function(data) {
+        $rootScope.$broadcast('entityName', data);
     };
 
-    return service;
-});
+    service.toLatLong = function(latitude, longitude) {
+        $rootScope.$broadcast('positionUpdate', latitude, longitude);
+    };
 
-app.factory('$entityInitialise', function($rootScope) {
-
-    var service = {};
-
-    service.open = function() {
+    service.openSearchResults = function() {
+//        this.ma
         $rootScope.$broadcast('displaySearchResults');
+//        $rootScope.$broadcast('plotMarkers');
+    };
+
+    service.plotMarkers = function(markers) {
+        $rootScope.$broadcast('plotMarkers', markers);
     };
 
     return service;

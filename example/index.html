@@ -48,7 +48,7 @@
         </div>
 
         <ul class="search" ng-class="{active:active}" ng-controller="SearchCtrl">
-            <li ng-repeat="result in results | orderBy: 'distance'">
+            <li ng-repeat="result in results | orderBy: 'distance'" ng-click="findMarker(result);">
                 <div class="name">{{result.name}}</div>
                 <div class="distance">{{result.distance | number: 2 }} mi</div>
             </li>

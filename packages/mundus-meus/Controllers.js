@@ -3,16 +3,16 @@
  * @param $scope {Object}
  * @param $http {Function}
  * @param $interpolate {Function}
- * @param $entitySearch {Object}
+ * @param $mundusMeus {Object}
  * @constructor
  */
-function GeolocationCtrl($scope, $http, $interpolate, $entitySearch) {
+function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
 
     var URL_GEOLOCATE = './../api/Geolocate/';
 
     $scope.results      = [];
     $scope.active       = false;
-    $scope.model        = { name: 'Nottingham' };
+    $scope.model        = { name: 'London' };
 
     /**
      * @method setGeolocation
@@ -20,7 +20,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $entitySearch) {
      * @return {void}
      */
     $scope.setGeolocation = function(placeName) {
-        $entitySearch.setGeolocation(placeName);
+        $mundusMeus.setGeolocation(placeName);
     };
 
     /**
@@ -40,27 +40,32 @@ function GeolocationCtrl($scope, $http, $interpolate, $entitySearch) {
     };
 
 }
-GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$entitySearch'];
+GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$mundusMeus'];
 
 /**
  * @class SearchCtrl
  * @param $scope {Object}
  * @param $http {Function}
- * @param $entitySearch {Object}
+ * @param $mundusMeus {Object}
  * @constructor
  */
-function SearchCtrl($scope, $http, $entitySearch, $entityInitialise) {
+function SearchCtrl($scope, $http, $mundusMeus) {
 
     var URL_SEARCH = './../api/Search/';
 
     $scope.active = false;
 
-    $scope.$on('entityName', function() {
+    $scope.findMarker = function(model) {
+        $mundusMeus.toLatLong(model.latitude, model.longitude);
+    };
 
-        var url = URL_SEARCH + $entitySearch.location.lat + '/' + $entitySearch.location.lon;
+    $scope.$on('entityName', function(context, data) {
+
+        var url = URL_SEARCH + data.lat + '/' + data.lon;
 
         $http.get(url).success(function(data) {
             $scope.results = data;
+            $mundusMeus.plotMarkers(data);
             $scope.display = true;
         });
 
@@ -71,7 +76,7 @@ function SearchCtrl($scope, $http, $entitySearch, $entityInitialise) {
     });
 
 }
-SearchCtrl.$inject = ['$scope', '$http', '$entitySearch', '$entityInitialise'];
+SearchCtrl.$inject = ['$scope', '$http', '$mundusMeus'];
 
 /**
  * @class MapCtrl
@@ -79,6 +84,7 @@ SearchCtrl.$inject = ['$scope', '$http', '$entitySearch', '$entityInitialise'];
  * @constructor
  */
 function MapCtrl($scope) {
+
 
 }
 MapCtrl.$inject = ['$scope'];
