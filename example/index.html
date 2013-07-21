@@ -7,8 +7,12 @@
     <script type="text/javascript" src="../lib/jquery-1.10.1.js"></script>
     <script type="text/javascript" src="../lib/leaflet-0.6.3.js"></script>
     <script type="text/javascript" src="../lib/angular-1.0.7.js"></script>
-    <script type="text/javascript" src="../node_modules/mustache/mustache.js"></script>
-    <script type="text/javascript" src="../packages/mundus-meus/mundus-meus.js"></script>
+    
+    <script type="text/javascript" src="../packages/mundus-meus/Application.js"></script>
+    <script type="text/javascript" src="../packages/mundus-meus/Modules.js"></script>
+    <script type="text/javascript" src="../packages/mundus-meus/Controllers.js"></script>
+    <script type="text/javascript" src="../packages/mundus-meus/Directives.js"></script>
+
     <script type="text/javascript" src="js/view.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/default.css" />
@@ -44,7 +48,7 @@
         <ul class="search" ng-controller="SearchCtrl">
             <li ng-repeat="result in results">
                 <div class="name">{{result.name}}</div>
-                <div class="distance">{{result.distance | number:2 }} mi</div>
+                <div class="distance">{{result.distance | number: 2 }} mi</div>
             </li>
         </ul>
 
