@@ -13,10 +13,11 @@ div.mundus-meus div.leaflet-control-zoom {
     border: 0 !important;
 }
 
-div.mundus-meus div.map {
+div.mundus-meus map {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    display: block;
 }
 
 div.mundus-meus div.geolocation {
@@ -44,7 +45,7 @@ div.mundus-meus div.geolocation h1 {
     padding: 5px 15px 5px 15px;
 }
 
-div.mundus-meus div.search {
+div.mundus-meus ul.search {
     border: 1px solid white;
     height: 300px;
     position: absolute;
@@ -52,9 +53,71 @@ div.mundus-meus div.search {
     left: 390px;
     width: 280px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .45);
-    padding: 5px;
+    /*padding: 5px;*/
     z-index: 1000;
     background-color: #f5f5f5;
+    list-style-type: none;
+    overflow-y: scroll;
+}
+
+div.mundus-meus ul.search li {
+    border-bottom: 1px solid lightgrey;
+    text-transform: lowercase;
+    height: 35px;
+    line-height: 35px;
+    /*overflow: hidden;*/
+    padding: 0 10px 0 10px;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative;
+}
+
+div.mundus-meus ul.search li:first-letter {
+    text-transform: uppercase;
+}
+
+div.mundus-meus ul.search li div.name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    float: left;
+    width: 180px;
+    overflow: hidden;
+}
+
+div.mundus-meus ul.search li div.distance {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    background: darkgray;
+    border-radius: 20px;
+    float: right;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 7px;
+    padding: 0 10px 0 10px;
+    font-size: 11px;
+    color: white;
+}
+
+div.mundus-meus ul.search li:hover {
+    background: -webkit-linear-gradient(top, rgba(147,183,223,1) 0%, rgba(119,162,210,1) 100%);
+    border-bottom: 1px solid #6c95c3;
+    color: white;
+}
+
+div.mundus-meus ul.search li:hover:before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+div.mundus-meus ul.search li:hover div.distance {
+    background-color: #6390c2;
+    color: white;
 }
 
 div.mundus-meus div.geolocation input.search {

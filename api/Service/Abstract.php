@@ -107,6 +107,8 @@ abstract class Service_Abstract implements Interface_Module {
 
         });
 
+        $data = array_values($data);
+
         return json_encode($data);
 
     }

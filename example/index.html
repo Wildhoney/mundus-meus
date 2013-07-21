@@ -22,34 +22,33 @@
 </head>
 <body>
 
-    <div ng-app class="mundus-meus">
+    <div ng-app="mundusMeusApp" class="mundus-meus">
 
-        <div class="geolocation">
+        <div class="geolocation" ng-class="{active:active}" ng-controller="GeolocationCtrl">
 
             <h1>My Location</h1>
 
             <div class="form">
-                <input type="text" class="search" placeholder="Search for a particular place..." value="Nottingham" />
-                <input type="button" class="btn" value="Find..." />
+                <input geolocate-text type="text" class="search" placeholder="Search for a particular place..." />
+                <input geolocate-button ng-click="getGeolocation(model.name);" type="button" class="btn" value="Find..." />
             </div>
 
-            <ul class="geolocation-results">
-
-                {{#isLoading}}<li class="loading">Loading...</li>{{/isLoading}}
-
-                {{#results}}
-                    <li>{{city}}, {{country}}.</li>
-                {{/results}}
-
+            <ul class="geolocation-results" ng-hide="{{results.length}}">
+                <li ng-repeat="result in results" ng-click="setGeolocation(result);">{{result.city}}, {{result.country}}</li>
             </ul>
 
-        </div>
-
-        <div class="search">
+            <div class="message" ng-show="{{results.length}}">Loading...</div>
 
         </div>
 
-        <div class="map"></div>
+        <ul class="search" ng-controller="SearchCtrl">
+            <li ng-repeat="result in results">
+                <div class="name">{{result.name}}</div>
+                <div class="distance">{{result.distance | number:2 }} mi</div>
+            </li>
+        </ul>
+
+        <map ng-controller="MapCtrl"></map>
 
     </div>
 
