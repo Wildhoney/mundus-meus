@@ -32,8 +32,8 @@ class Geolocator_Nominatim extends Geolocator_Abstract {
             $record = array(
                 'city'      => ($datum->address->city) ?: $datum->address->county,
                 'country'   => $datum->address->country,
-                'lat'       => $datum->lat,
-                'lon'       => $datum->lon);
+                'latitude'  => $datum->lat,
+                'longitude' => $datum->lon);
 
             array_push($records, $record);
 

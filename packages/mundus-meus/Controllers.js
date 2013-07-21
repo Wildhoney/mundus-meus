@@ -23,7 +23,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
      */
     $scope.setGeolocation = function(data) {
         $mundusMeus.setGeolocation(data);
-        $mundusMeus.toLocation(data.lat, data.lon);
+        $mundusMeus.toLocation(data.latitude, data.longitude);
     };
 
     /**
@@ -66,8 +66,8 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
 
     $scope.$on('entityName', function(context, data) {
 
-        $scope.position.latitude    = data.lat;
-        $scope.position.longitude   = data.lon;
+        $scope.position.latitude    = data.latitude;
+        $scope.position.longitude   = data.longitude;
         var url                     = $scope.$eval($interpolate(URL_SEARCH));
 
         $http.get(url).success(function(data) {
