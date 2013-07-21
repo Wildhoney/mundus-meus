@@ -21,7 +21,6 @@ Technologies
  * <em><a href="https://github.com/jenssegers/php-router" target="_blank">PHP Router</a></em>: Laravel inspired PHP router;
  * <em><a href="http://lesscss.org/" target="_blank">LESS</a></em>: Preprocessor for more organised stylesheets;
  * <em><a href="http://www.leafletjs.com/" target="_blank">Leaflet.js</a></em>: For all of the mapping functionality;
- * <em><a href="http://mustache.github.io/" target="_blank">Mustache</a>: For the JavaScript template engine;</em>
  * <em><a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a></em>: Build process for the JavaScript/LESS/HTML;
 
 Etymology
