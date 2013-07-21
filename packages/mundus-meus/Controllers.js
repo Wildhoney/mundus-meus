@@ -8,13 +8,11 @@
  */
 function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
 
-    var URL_GEOLOCATE = './../api/Geolocate/{{location}}';
+    var URL_GEOLOCATE   = './../api/Geolocate/{{location}}';
 
     $scope.results      = [];
     $scope.active       = false;
     $scope.location     = null;
-
-    this.location = 'Test';
 
     /**
      * @method setGeolocation
@@ -33,12 +31,34 @@ function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
      */
     $scope.getGeolocation = function(name) {
 
-        $scope.location = name;
-        var url         = $scope.$eval($interpolate(URL_GEOLOCATE));
+        var getResults = function() {
 
-        $http.get(url).success(function(data) {
-            $scope.results = data;
-        });
+            var url = $scope.$eval($interpolate(URL_GEOLOCATE));
+
+            $http.get(url).success(function(data) {
+                $scope.results = data;
+            });
+
+        };
+
+        if (!name) {
+
+            // If we haven't set a name then we'll use the browser to find their location.
+            navigator.geolocation.getCurrentPosition(function(position) {
+
+                // Set the location as the determined coordinates.
+                $scope.location = position.coords.latitude + ',' + position.coords.longitude;
+                $scope.$apply();
+
+                getResults();
+
+            });
+
+            return;
+        }
+
+        $scope.location = name;
+        getResults();
 
     };
 
@@ -54,7 +74,7 @@ GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$mundusMeus'];
  */
 function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
 
-    var URL_SEARCH = './../api/Search/{{position.latitude}}/{{position.longitude}}';
+    var URL_SEARCH  = './../api/Search/{{position.latitude}}/{{position.longitude}}';
 
     $scope.active   = false;
     $scope.results  = [];
@@ -90,8 +110,7 @@ SearchCtrl.$inject = ['$scope', '$http', '$interpolate', '$mundusMeus'];
  * @param $scope {Object}
  * @constructor
  */
-function MapCtrl($scope) {
-
+function MapCtrl($scope, $mundusMeus) {
 
 }
-MapCtrl.$inject = ['$scope'];
+MapCtrl.$inject = ['$scope', '$mundusMeus'];
