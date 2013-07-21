@@ -11,23 +11,26 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
         var mapElement = $element[0];
 
         // Instantiate the map.
-        var map = L.map(mapElement, {
-            center: [51.505, -0.09],
-            zoom: 13
-        });
+        var map = L.map(mapElement, { center: [51.505, -0.09], zoom: 13 });
 
         // Insert the tile layer; can be changed by supplying the `tiles` attribute in the options.
         L.tileLayer('http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png').addTo(map);
 
         $scope.$on('positionUpdate', function(context, latitude, longitude) {
+
+            // When we receive the 'positionUpdate' event, we'll move to the location.
             map.panTo(new L.LatLng(latitude, longitude));
+
         });
 
         $scope.$on('plotMarkers', function(context, markers) {
 
             markers.forEach(function(marker) {
+
+                // Append all of the markers onto the Leaflet.js map.
                 var icon = L.divIcon({className: 'marker-icon', size: [100, 100]});
                 L.marker([marker.latitude, marker.longitude], {icon: icon}).addTo(map);
+
             });
 
         });
@@ -37,36 +40,18 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
 ]);
 
 /**
- * @directive geolocate-button
+ * @directive find-location
  * @restrict A
  * @type {Function}
  * Button that initialises the geolocation.
  */
-app.directive('geolocateButton', function() {
+app.directive('findLocation', function() {
 
     return { restrict: 'A', link: function($scope, $element) {
         $element.bind('click', function() {
             $scope.active = true;
             $scope.$apply();
         });
-    }};
-
-});
-
-/**
- * @directive geolocate-text
- * @restrict A
- * @type {Function}
- * Search query for the geolocation.
- */
-app.directive('geolocateText', function() {
-
-    return { restrict: 'A', link: function($scope, $element) {
-        $element.bind('keyup', function() {
-            $scope.model.name = $element.context.value;
-            $scope.$apply();
-        });
-
     }};
 
 });

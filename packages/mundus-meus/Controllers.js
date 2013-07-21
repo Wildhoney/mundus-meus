@@ -8,30 +8,33 @@
  */
 function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
 
-    var URL_GEOLOCATE = './../api/Geolocate/';
+    var URL_GEOLOCATE = './../api/Geolocate/{{location}}';
 
     $scope.results      = [];
     $scope.active       = false;
-    $scope.model        = { name: 'London' };
+    $scope.location     = null;
+
+    this.location = 'Test';
 
     /**
      * @method setGeolocation
-     * @param placeName {string}
+     * @param data {object}
      * @return {void}
      */
-    $scope.setGeolocation = function(placeName) {
-        $mundusMeus.setGeolocation(placeName);
+    $scope.setGeolocation = function(data) {
+        $mundusMeus.setGeolocation(data);
+        $mundusMeus.toLocation(data.lat, data.lon);
     };
 
     /**
      * @method getGeolocation
-     * @param placeName
+     * @param name {String}
      * @return {void}
      */
-    $scope.getGeolocation = function(placeName) {
+    $scope.getGeolocation = function(name) {
 
-//        var url = $scope.$eval($interpolate(URL_GEOLOCATE));
-        var url = URL_GEOLOCATE + placeName;
+        $scope.location = name;
+        var url = $scope.$eval($interpolate(URL_GEOLOCATE));
 
         $http.get(url).success(function(data) {
             $scope.results = data;
@@ -56,7 +59,7 @@ function SearchCtrl($scope, $http, $mundusMeus) {
     $scope.active = false;
 
     $scope.findMarker = function(model) {
-        $mundusMeus.toLatLong(model.latitude, model.longitude);
+        $mundusMeus.toLocation(model.latitude, model.longitude);
     };
 
     $scope.$on('entityName', function(context, data) {

@@ -17,16 +17,28 @@ app.factory('$mundusMeus', function($rootScope) {
         $rootScope.$broadcast('entityName', data);
     };
 
-    service.toLatLong = function(latitude, longitude) {
+    /**
+     * @method toLocation
+     * @param latitude {number}
+     * @param longitude {number}
+     * @return {void}
+     */
+    service.toLocation = function(latitude, longitude) {
         $rootScope.$broadcast('positionUpdate', latitude, longitude);
     };
 
+    /**
+     * @method openSearchResults
+     * @return {void}
+     */
     service.openSearchResults = function() {
-//        this.ma
         $rootScope.$broadcast('displaySearchResults');
-//        $rootScope.$broadcast('plotMarkers');
     };
 
+    /**
+     * @method plotMarkers
+     * @return {void}
+     */
     service.plotMarkers = function(markers) {
         $rootScope.$broadcast('plotMarkers', markers);
     };
