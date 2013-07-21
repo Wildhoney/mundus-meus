@@ -12,11 +12,9 @@
                 text        : rootElement.querySelector('input.search'),
                 button      : rootElement.querySelector('input.btn'),
 
-                results: {
-                    geolocation: {
-                        records: rootElement.querySelector('.geolocation-results'),
-                        record: rootElement.querySelector('.geolocation-results li')
-                    }
+                geolocation: {
+                    records: rootElement.querySelector('.geolocation-results'),
+                    record: 'li'
                 },
                 search      : rootElement.querySelector('.geolocation-results')
             }

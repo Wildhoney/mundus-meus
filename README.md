@@ -13,6 +13,7 @@ Technologies
 -----------
 
  * <em><a href="http://nominatim.openstreetmap.org/" target="_blank">Nominatim API</a></em>: For resolving places to latitude/longitude values;
+ * <em><a href="http://www.angularjs.com/" target="_blank">Angular.js</a></em>: Utilised for the front-end example and API;
  * <em><a href="http://www.leafletjs.com/" target="_blank">Leaflet.js</a></em>: For all of the mapping functionality;
  * <em><a href="http://mustache.github.io/" target="_blank">Mustache</a>: For the JavaScript template engine;</em>
  * <em><a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a></em>: Build process for the JavaScript/CSS/HTML;

@@ -14,7 +14,7 @@ function MundusMeus(options) {
 
     // Memorise the content of the templates.
     this.templates = {};
-    this.templates.GEOLOCATION  = options.elements.results.geolocation.records.innerHTML;
+    this.templates.GEOLOCATION  = options.elements.geolocation.records.innerHTML;
     this.templates.SEARCH       = options.elements.search.innerHTML;
 
     // Configure the onClick event.
@@ -44,19 +44,27 @@ MundusMeus.prototype = {
         var template    = this.templates.GEOLOCATION,
             url         = this.paths.geolocate,
             interpolate = this.interpolate,
-            records     = elements.results.geolocation.records;
+            records     = elements.geolocation.records,
+            record      = elements.geolocation.record;
 
         button.on('click', function() {
 
             var geolocateUrl = interpolate(url, [$(elements.text).val()]);
 
             // Notify the view that we're loading the result set.
-            var html = Mustache.render(template, { isLoading: true });
-            records.innerHTML = html;
+//            var html = Mustache.render(template, { isLoading: true });
+//            records.innerHTML = html;
 
             $.getJSON(geolocateUrl, function(results) {
+
                 var html = Mustache.render(template, { results: results, isLoading: false });
                 records.innerHTML = html;
+
+                var items = $(records).find(record);
+                items.on('click', function(clicked) {
+                    console.log(clicked);
+                }.bind());
+
             });
 
         });
