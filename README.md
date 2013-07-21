@@ -9,6 +9,8 @@ Mundus Meus defines two API routes:
  * `api/Geolocate/Nottingham` &ndash; Discovers the latitude/longitude for <i>Nottingham</i>;
  * `api/Search/52.95385025/-1.1698803748747` &ndash; Searches for entities around the lat/long.
 
+Please note: the aforementioned routes require `MOD_REWRITE` to be enabled &ndash; `AllowOverride` also needs to be set to `All`.
+
 Technologies
 -----------
 
@@ -17,7 +19,7 @@ Technologies
  * <em><a href="http://lesscss.org/" target="_blank">LESS</a></em>: Preprocessor for more organised stylesheets;
  * <em><a href="http://www.leafletjs.com/" target="_blank">Leaflet.js</a></em>: For all of the mapping functionality;
  * <em><a href="http://mustache.github.io/" target="_blank">Mustache</a>: For the JavaScript template engine;</em>
- * <em><a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a></em>: Build process for the JavaScript/CSS/HTML;
+ * <em><a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a></em>: Build process for the JavaScript/LESS/HTML;
 
 Etymology
 -----------
