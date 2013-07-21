@@ -55,8 +55,8 @@ MundusMeus.prototype = {
             $(container).addClass('active');
 
             // Notify the view that we're loading the result set.
-//            var html = Mustache.render(template, { isLoading: true });
-//            records.innerHTML = html;
+            var html = Mustache.render(template, { isLoading: true });
+            records.innerHTML = html;
 
             $.getJSON(geolocateUrl, function(results) {
 
