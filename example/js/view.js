@@ -13,6 +13,7 @@
                 button      : rootElement.querySelector('input.btn'),
 
                 geolocation: {
+                    container: rootElement.querySelector('.geolocation'),
                     records: rootElement.querySelector('.geolocation-results'),
                     record: 'li'
                 },

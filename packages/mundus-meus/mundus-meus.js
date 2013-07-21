@@ -45,11 +45,14 @@ MundusMeus.prototype = {
             url         = this.paths.geolocate,
             interpolate = this.interpolate,
             records     = elements.geolocation.records,
-            record      = elements.geolocation.record;
+            record      = elements.geolocation.record,
+            container   = elements.geolocation.container;
 
         button.on('click', function() {
 
             var geolocateUrl = interpolate(url, [$(elements.text).val()]);
+
+            $(container).addClass('active');
 
             // Notify the view that we're loading the result set.
 //            var html = Mustache.render(template, { isLoading: true });
@@ -84,7 +87,7 @@ MundusMeus.prototype = {
         });
 
         // Insert the tile layer; can be changed by supplying the `tiles` attribute in the options.
-        L.tileLayer(this.options.tiles || 'http://a.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102956/256/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer(this.options.tiles || 'http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png').addTo(map);
 
     },
 

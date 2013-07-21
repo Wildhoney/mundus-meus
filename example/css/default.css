@@ -4,6 +4,11 @@
     font-family: "Open Sans" Tahoma, Helvetica, sans-serif !important;
 }
 
+body {
+    background-color: darkgray;
+    padding: 20px;
+}
+
 h1 {
     font-weight: 100;
     font-size: 26px;
