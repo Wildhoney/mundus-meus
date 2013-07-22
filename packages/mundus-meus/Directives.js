@@ -70,7 +70,11 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
             var latLongBounds = [];
 
             // Clear all of the markers.
-            $mundusMeus.highlightMarker();
+            allMarkers.forEach(function(item) {
+                map.removeLayer(item.marker);
+            });
+
+            // $mundusMeus.highlightMarker();
             allMarkers.length = 0;
 
             // Iterate over all of the markers for this particular location.
