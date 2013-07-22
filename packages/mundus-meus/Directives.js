@@ -4,7 +4,7 @@
  * @type {Function}
  * Container for the Leaflet map.
  */
-app.directive('map', function() {
+app.directive('map', ['$mundusMeus', function($mundusMeus) {
 
     /**
      * @property allMarkers
@@ -68,6 +68,7 @@ app.directive('map', function() {
         $scope.$on('plotMarkers', function(context, models) {
 
             // Clear all of the markers.
+            $mundusMeus.highlightMarker();
             allMarkers.length = 0;
 
             // Iterate over all of the markers for this particular location.
@@ -84,8 +85,9 @@ app.directive('map', function() {
 
         });
 
-    }}
-});
+    }}}
+
+]);
 
 /**
  * @directive find-location
