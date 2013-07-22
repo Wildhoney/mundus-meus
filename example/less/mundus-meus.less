@@ -5,7 +5,6 @@
     overflow: hidden;
     box-shadow: 0 0 5px rgba(0, 0, 0, .35);
 
-    // Leaflet.js container.
     map {
 
         width: 100%;
@@ -13,9 +12,19 @@
         overflow: hidden;
         display: block;
 
+        div.marker-icon {
+
+            background-color: #d14949;
+            background: -webkit-linear-gradient(top, rgba(230,100,100,1) 0%, rgba(209,73,73,1) 100%);
+            border-radius: 140px;
+            border: 3px solid white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .55);
+            box-sizing: content-box;
+
+        }
+
     }
 
-    // Geolocation results.
     div.geolocation {
 
         position: absolute;
@@ -31,7 +40,9 @@
         -webkit-transition: all 1.25s;
 
         &.active {
+
             height: 300px;
+
         }
 
         h1 {
@@ -43,7 +54,44 @@
 
         }
 
+        div.form {
+
+            overflow: hidden;
+            background-color: darkgray;
+            padding: 10px;
+
+            input {
+
+                border: 0;
+                box-shadow: 0 0 2px rgba(0, 0, 0, .25);
+                border-radius: 0;
+                height: 30px;
+                line-height: 30px;
+
+                &.search {
+
+                    float: left;
+                    border-radius: 3px 0 0 3px;
+                    height: 30px;
+                    line-height: 30px;
+                    width: 80%;
+                    padding: 0 10px 0 10px;
+
+                }
+
+                &.btn {
+
+                    width: 20%;
+                    cursor: pointer;
+
+                }
+
+            }
+
+        }
+
         ul.geolocation-results {
+
             list-style-type: none;
             clear: both;
             overflow: hidden;
@@ -54,7 +102,8 @@
             height: 197px;
 
             li {
-                font-size: 12px;
+
+                font-size: 14px;
                 height: 48px;
                 line-height: 48px;
                 padding: 0 10px 0 55px;
@@ -62,34 +111,41 @@
                 border-bottom: 1px solid #d2d2d2;
                 box-shadow: 0 5px 2px -5px rgba(0, 0, 0, .05);
                 -webkit-transition: all .45s;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 cursor: pointer;
                 background: transparent url('./../images/263-location-marker.png') no-repeat 10px center;
 
                 &:hover {
-                    color: black;
+
                     background-color: rgba(0, 0, 0, .05);
+                    color: black;
+
                 }
 
                 &.loading {
+
                     font-style: italic;
                     font-weight: bold;
+
                 }
+
             }
+
         }
 
     }
 
-    // Entity results.
     ul.search {
 
         border: 1px solid white;
-        height: 300px;
+        height: 290px;
         position: absolute;
-        bottom: 40px;
+        bottom: 45px;
         left: 110px;
-        width: 280px;
+        width: 270px;
         box-shadow: 0 0 10px rgba(0, 0, 0, .45);
-        /*padding: 5px;*/
         z-index: 1000;
         background-color: #f5f5f5;
         list-style-type: none;
@@ -98,31 +154,33 @@
         visibility: hidden;
 
         &.active {
+
             left: 390px;
             visibility: visible;
+
         }
 
         li {
+
             border-bottom: 1px solid lightgrey;
             text-transform: lowercase;
             height: 35px;
             line-height: 35px;
-            /*overflow: hidden;*/
             padding: 0 10px 0 10px;
             font-size: 12px;
             cursor: pointer;
             position: relative;
 
             &:first-letter {
+
                 text-transform: uppercase;
+
             }
 
             &:hover {
-                background: -webkit-linear-gradient(top, rgba(147,183,223,1) 0%, rgba(119,162,210,1) 100%);
-                border-bottom: 1px solid #6c95c3;
-                color: white;
 
                 &:before {
+
                     content: "";
                     position: absolute;
                     height: 1px;
@@ -130,23 +188,46 @@
                     left: 0;
                     width: 100%;
                     background-color: #f5f5f5;
+
                 }
 
                 div.distance {
+
                     background-color: #6390c2;
                     color: white;
+
                 }
+
+            }
+
+            &:not(.title):hover {
+
+                background: -webkit-linear-gradient(top, rgba(147,183,223,1) 0%, rgba(119,162,210,1) 100%);
+                border-bottom: 1px solid #6c95c3;
+                color: white;
+
+            }
+
+            h2 {
+
+                font-size: 15px;
+                color: darkgray;
+                text-transform: uppercase;
+
             }
 
             div.name {
+
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 float: left;
                 width: 180px;
                 overflow: hidden;
+
             }
 
             div.distance {
+
                 position: absolute;
                 top: 0;
                 right: 10px;
@@ -159,14 +240,11 @@
                 padding: 0 10px 0 10px;
                 font-size: 11px;
                 color: white;
+
             }
+
         }
-    }
 
-    // Leaflet zoom control.
-    div.leaflet-control-zoom {
-        border: 0 !important;
     }
-
 
 }
