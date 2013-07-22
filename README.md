@@ -37,9 +37,9 @@ Technologies
 Getting Started
 -----------
 
-Installing Mundus Meus dependencies requires <a href="https://npmjs.org/" target="_blank">npm</a> &ndash; running `npm install` will install all dependencies as taken from the `package.json` file.
+Installing Mundus Meus' dependencies requires <a href="https://npmjs.org/" target="_blank">npm</a> &ndash; running `npm install` will install all dependencies as taken from the `package.json` file.
 
-If you wish to create a build yourself then you'll need to install <a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a>. Afterwards, you can create a build by issuing the command `grunt`.
+If you wish to create a build yourself then you'll need to install <a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a> &ndash; you can create a build by issuing the command `grunt`.
 
 Adding a Service
 -----------
