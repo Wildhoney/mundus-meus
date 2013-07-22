@@ -48,7 +48,7 @@ class Service_Tesco extends Service_Abstract {
                 // Package each result into the array.
                 'lat'       => $matches[1][$index],
                 'lng'       => $matches[2][$index],
-                'placeName' => $matches[3][$index]
+                'placeName' => ucwords(strtolower($matches[3][$index]))
             );
 
             // ...And push it into the master array.
