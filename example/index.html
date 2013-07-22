@@ -38,24 +38,29 @@
                 <input find-location ng-click="getGeolocation(location);" type="button" class="btn" value="Find..." ng-disabled="!location" />
             </div>
 
-            <ul class="geolocation-results" ng-hide="{{results.length}}">
+            <ul class="geolocation-results">
+
+                <li class="loading-data" ng-show="!results.length">Loading Results&hellip;</li>
+
                 <li open-location-results ng-repeat="result in results" ng-click="setGeolocation(result);">
                     {{result.city}}, {{result.country}}
                 </li>
-            </ul>
 
-            <div class="message" ng-show="{{results.length}}">Loading...</div>
+            </ul>
 
         </div>
 
         <ul class="search" ng-class="{active:active}" ng-controller="SearchCtrl">
 
             <li class="title"><h2>Showing {{results.length}} Tesco Stores</h2></li>
-            <!--<li class="message" ng-show="{{results.length}}">Loading...</li>-->
+
+            <li class="loading-data" ng-show="!results.length">Loading Results&hellip;</li>
 
             <li ng-class="{ active : isActive(result) }" ng-repeat="result in results | orderBy: 'distance'" ng-click="findMarker(result);">
+
                 <div class="name">{{result.name}}</div>
                 <div class="distance">{{result.distance | number: 2 }} mi</div>
+
             </li>
 
         </ul>
