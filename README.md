@@ -6,7 +6,7 @@ Description
 
 Mundus Meus allows you to plot the locations of <em>entities</em>. It then allows the end user to specify their location (with optional auto-detection), and it then maps places of interest close to them.
 
-<img src="" alt="Screenshot taken from the Tescos example" />
+<img src="https://dl.dropboxusercontent.com/s/03uaar440ofoerf/screenshot-0.1.0-alpha.png" alt="Screenshot taken from the Tescos example" />
 
 In the example we're using Tescos. If you specify your location, the application will notify you of Tescos within close proximity to you.
 
