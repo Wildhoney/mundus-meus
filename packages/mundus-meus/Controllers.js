@@ -100,15 +100,31 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
     $scope.model    = {};
     $scope.position = { latitude: null, longitude: null };
 
+    /**
+     * @method isActive
+     * @param model {Object}
+     * @return {Boolean}
+     */
     $scope.isActive = function(model) {
         return ($scope.model === model);
     };
 
+    /**
+     * @method findMarker
+     * @param model {Object}
+     * @return {void}
+     */
     $scope.findMarker = function(model) {
         $scope.model = model;
         $mundusMeus.toLocation(model.latitude, model.longitude);
     };
 
+    /**
+     * @event entityName
+     * @param context {Object}
+     * @param data {Object}
+     * @return {void}
+     */
     $scope.$on('entityName', function(context, data) {
 
         $scope.position.latitude    = data.latitude;
@@ -123,6 +139,10 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
 
     });
 
+    /**
+     * @event displaySearchResults
+     * @return {void}
+     */
     $scope.$on('displaySearchResults', function() {
         $scope.active = true;
     });
