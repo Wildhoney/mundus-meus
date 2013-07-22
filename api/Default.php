@@ -5,9 +5,15 @@ namespace MundusMeus;
 date_default_timezone_set('Europe/London');
 ini_set('display_errors', false);
 
+// Laravel inspired PHP Router
+// Reference: https://github.com/jenssegers/php-router
+use Jenssegers\Router, Jenssegers\Route;
+include './../lib/php-router/src/Jenssegers/Route.php';
+include './../lib/php-router/src/Jenssegers/Router.php';
+
+// Mundus Meus library includes.
 include 'Interface.php';
 include 'Factory.php';
-include 'Params.php';
 include 'Geolocator/Abstract.php';
 include 'Service/Abstract.php';
 
@@ -17,25 +23,23 @@ array_push($paths, dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Service');
 array_push($paths, dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Geolocator');
 set_include_path(join(';', $paths));
 
-switch (Params::get('type')) {
+Route::get('/Geolocate/(:all)', function($query) {
 
-    case ('location'):
+    // Instantiate the desired service class via the factory.
+    $geolocator = Factory::getInstance()->getGeolocator(Factory::GEOLOCATOR_NOMINATIM);
+    $geolocator->restrictCountry('United Kingdom');
+    $geolocator->setQuery($query);
+    return $geolocator->getJSON();
 
-        // Instantiate the desired service class via the factory.
-        $geolocator = Factory::getInstance()->getGeolocator(Factory::GEOLOCATOR_NOMINATIM);
-        $geolocator->restrictCountry('United Kingdom');
-        $geolocator->setQuery(Params::get('query'));
-        echo $geolocator->getJSON();
-        break;
+});
 
-    case ('entities'):
+Route::get('/Search/(:any)/(:any)', function($latitude, $longitude) {
 
-        // Instantiate the desired service class via the factory.
-        $service = Factory::getInstance()->getService(Factory::SERVICE_TESCO);
-        $service->setRadiusInMiles(10);
-        $service->setLatitude(Params::get('latitude'));
-        $service->setLongitude(Params::get('longitude'));
-        echo $service->getJSON();
-        break;
+    // Instantiate the desired service class via the factory.
+    $service = Factory::getInstance()->getService(Factory::SERVICE_TESCO);
+    $service->setRadiusInMiles(10);
+    $service->setLatitude($latitude);
+    $service->setLongitude($longitude);
+    return $service->getJSON();
 
-}
+});

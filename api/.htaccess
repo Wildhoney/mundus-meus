@@ -1,19 +1,24 @@
 # Enable Rewriting
 
 RewriteEngine on
+Options +FollowSymLinks
 
-# Rewrite entities URL
+## Rewrite entities URL
+#
+##   Input:      Search/:latitude/:longitude
+##   Example:    api/Geolocate/Nottingham
+##   Output:     Default.php?type=entities&latitude=x&longitude=y
+#
+#RewriteRule ^Search/(.+?)/(.+?)/?$ Default.php?type=entities&latitude=$1&longitude=$2
+#
+## Rewrite locator URL
+#
+##   Input:      Geolocate/:query
+##   Example:    api/Search/52.95385025/-1.1698803748747
+##   Output:     Default.php?type=locator&query=x
+#
+#RewriteRule ^Geolocate/(.+?)/?$ Default.php?type=location&query=$1
 
-#   Input:      Search/:latitude/:longitude
-#   Example:    api/Geolocate/Nottingham
-#   Output:     Default.php?type=entities&latitude=x&longitude=y
-
-RewriteRule ^Search/(.+?)/(.+?)/?$ Default.php?type=entities&latitude=$1&longitude=$2
-
-# Rewrite locator URL
-
-#   Input:      Geolocate/:query
-#   Example:    api/Search/52.95385025/-1.1698803748747
-#   Output:     Default.php?type=locator&query=x
-
-RewriteRule ^Geolocate/(.+?)/?$ Default.php?type=location&query=$1
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ Default.php?/$1 [L]

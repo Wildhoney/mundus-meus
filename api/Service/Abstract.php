@@ -151,8 +151,8 @@ abstract class Service_Abstract implements Interface_Module {
     private function _calculateDistance($row) {
 
         // Typecast all of the latitude/longitude values to a float.
-        $currentLatitude        = (float) Params::get('latitude');
-        $currentLongitude       = (float) Params::get('longitude');
+        $currentLatitude        = (float) $this->_latitude;
+        $currentLongitude       = (float) $this->_longitude;
         $previousLatitude       = (float) $row['latitude'];
         $previousLongitude      = (float) $row['longitude'];
 
