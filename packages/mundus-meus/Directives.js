@@ -35,15 +35,6 @@ app.directive('map', function() {
 
         });
 
-        $scope.$on('detectLocation', function() {
-
-            alert('Ah1');
-//            navigator.geolocation.getCurrentPosition(function(position) {
-//                console.log(position);
-//            });
-
-        });
-
     }}
 });
 

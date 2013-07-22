@@ -6,7 +6,7 @@
  * @param $mundusMeus {Object}
  * @constructor
  */
-function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
+function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
 
     var URL_GEOLOCATE   = './../api/Geolocate/{{location}}';
 
@@ -36,7 +36,23 @@ function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
             var url = $scope.$eval($interpolate(URL_GEOLOCATE));
 
             $http.get(url).success(function(data) {
+
                 $scope.results = data;
+
+                // Detect if there's only one available location.
+                if ($scope.results.length === 1) {
+
+                    // If there is only one result, then we'll jump to the location immediately, and
+                    // find the results within close proximity.
+                    $scope.setGeolocation($scope.results[0]);
+
+                    $timeout(function() {
+                        // Open the search results after 800 milliseconds.
+                        $mundusMeus.openSearchResults();
+                    }, 800);
+
+                }
+
             });
 
         };
@@ -63,7 +79,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $mundusMeus) {
     };
 
 }
-GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$mundusMeus'];
+GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$timeout', '$mundusMeus'];
 
 /**
  * @class SearchCtrl
