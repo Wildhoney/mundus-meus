@@ -1,6 +1,17 @@
 Mundus Meus 0.1.0
 ===========
 
+Description
+-----------
+
+Mundus Meus allows you to plot the locations of <em>entities</em>. It then allows the end user to specify their location (with optional auto-detection), and it then maps places of interest close to them.
+
+<img src="" alt="Screenshot taken from the Tescos example" />
+
+In the example we're using Tescos. If you specify your location, the application will notify you of Tescos within close proximity to you.
+
+The <strong>REALLY</strong> good thing about Mundus Meus is that it's written for developers to extend! It's written in beautiful OOP &ndash; PHP5 and AngularJS, and therefore is crying out to be extended in any way a developer sees fit. However, for those wanting to get started quickly, all you need to do is clone the example and style as necessary.
+
 API
 -----------
 
@@ -27,3 +38,14 @@ Etymology
 -----------
 
 You're probably wondering, so we'll spill the beans! <i>Mundus Meus</i> is Latin for <i>My World</i>. We considered calling it <i>Meus Mundus Parvus</i> (<i>My Little World</i>), but frankly, that's a little too long for comfort.
+
+Adding a Service
+-----------
+
+As you're probably not wanting to map Tescos stores, Mundus Meus allows you to add your very own services very easily. Please follow the step-by-step guide:
+
+ * Create a new service class in `api/Service` &ndash; call it `Service_Halfords`;
+ * Change the `$_map` property to map the properties from the API to `name`, `latitude`, `longitude`, et cetera...;
+ * Modify the `API_URL` constant to the Halfords store location URL (database interface coming shortly);
+ * Implement the `_parseData` hook which allows you to parse the idiosyncratic response from the API;
+ * Open `Default.php` and change the `getService` method to the name of your new service &ndash; `Service_Halfords`;
