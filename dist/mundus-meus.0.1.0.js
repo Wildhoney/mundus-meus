@@ -232,6 +232,8 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
          */
         $scope.$on('plotMarkers', function(context, models) {
 
+            var latLongBounds = [];
+
             // Clear all of the markers.
             $mundusMeus.highlightMarker();
             allMarkers.length = 0;
@@ -246,7 +248,12 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
                 // Keep a track of the markers in the collection.
                 allMarkers.push({ model: model, marker: marker });
 
+                // Append each lat/long pair to calculate the bounds.
+                latLongBounds.push([model.latitude, model.longitude]);
+
             });
+
+            map.fitBounds([latLongBounds]);
 
         });
 
