@@ -3,16 +3,18 @@
  * @param $scope {Object}
  * @param $http {Function}
  * @param $interpolate {Function}
+ * @param $timeout {Function}
  * @param $mundusMeus {Object}
  * @constructor
  */
 function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
 
-    var URL_GEOLOCATE   = './../api/Geolocate/{{location}}';
+    var URL_GEOLOCATE       = './../api/Geolocate/{{location}}';
 
-    $scope.results      = [];
-    $scope.active       = false;
-    $scope.location     = null;
+    $scope.results          = [];
+    $scope.active           = false;
+    $scope.location         = null;
+    $scope.detectionAllowed = (navigator.geolocation) ? true : false;
 
     /**
      * @method setGeolocation
@@ -57,7 +59,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
 
         };
 
-        if (!name) {
+        if (typeof name === 'undefined') {
 
             // If we haven't set a name then we'll use the browser to find their location.
             navigator.geolocation.getCurrentPosition(function(position) {
