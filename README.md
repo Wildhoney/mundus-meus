@@ -34,10 +34,12 @@ Technologies
  * <em><a href="http://www.leafletjs.com/" target="_blank">Leaflet.js</a></em>: For all of the mapping functionality;
  * <em><a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a></em>: Build process for the JavaScript/LESS/HTML;
 
-Etymology
+Getting Started
 -----------
 
-You're probably wondering, so we'll spill the beans! <i>Mundus Meus</i> is Latin for <i>My World</i>. We considered calling it <i>Meus Mundus Parvus</i> (<i>My Little World</i>), but frankly, that's a little too long for comfort.
+Installing Mundus Meus dependencies requires <a href="https://npmjs.org/" target="_blank">npm</a> &ndash; running `npm install` will install all dependencies as taken from the `package.json` file.
+
+If you wish to create a build yourself then you'll need to install <a href="http://www.gruntjs.com/" target="_blank">Grunt.js</a>. Afterwards, you can create a build by issuing the command `grunt`.
 
 Adding a Service
 -----------
@@ -49,3 +51,8 @@ As you're probably not wanting to map Tescos stores, Mundus Meus allows you to a
  * Modify the `API_URL` constant to the Halfords store location URL (database interface coming shortly);
  * Implement the `_parseData` hook which allows you to parse the idiosyncratic response from the API;
  * Open `Default.php` and change the `getService` method to the name of your new service &ndash; `Service_Halfords`;
+
+Etymology
+-----------
+
+You're probably wondering, so we'll spill the beans! <i>Mundus Meus</i> is Latin for <i>My World</i>. We considered calling it <i>Meus Mundus Parvus</i> (<i>My Little World</i>), but frankly, that's a little too long for comfort.
