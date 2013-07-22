@@ -6,6 +6,14 @@
  */
 app.directive('map', function() {
 
+    /**
+     * @property allMarkers
+     * @type {Array}
+     * Holds all of the markers currently being displayed on the map.
+     * @private
+     */
+    var allMarkers = [];
+
     return { restrict: 'E', link: function linkFn($scope, $element) {
 
         var mapElement = $element[0];
@@ -16,6 +24,33 @@ app.directive('map', function() {
         // Insert the tile layer; can be changed by supplying the `tiles` attribute in the options.
         L.tileLayer('http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png').addTo(map);
 
+        /**
+         * @event highlightMarker
+         * Highlights the active Leaflet.js marker on the map.
+         * @return {void}
+         */
+        $scope.$on('highlightMarker', function(context, model) {
+
+            allMarkers.forEach(function(item) {
+
+                var classList = item.marker._icon.classList;
+
+                if (item.model === model) {
+                    classList.add('active');
+                    return;
+                }
+
+                classList.remove('active');
+
+            });
+
+        });
+
+        /**
+         * @event positionUpdate
+         * Move the Leaflet.js map to the desired location as denoted by the lat/long.
+         * @return {void}
+         */
         $scope.$on('positionUpdate', function(context, latitude, longitude) {
 
             // When we receive the 'positionUpdate' event, we'll move to the location.
@@ -23,13 +58,27 @@ app.directive('map', function() {
 
         });
 
-        $scope.$on('plotMarkers', function(context, markers) {
+        /**
+         * @event plotMarkers
+         * @param {Object}
+         * @models {Array}
+         * Plot the markers on the Leaflet.js map
+         * @return {void}
+         */
+        $scope.$on('plotMarkers', function(context, models) {
 
-            markers.forEach(function(marker) {
+            // Clear all of the markers.
+            allMarkers.length = 0;
+
+            // Iterate over all of the markers for this particular location.
+            models.forEach(function(model) {
 
                 // Append all of the markers onto the Leaflet.js map.
-                var icon = L.divIcon({className: 'marker-icon', size: [100, 100]});
-                L.marker([marker.latitude, marker.longitude], {icon: icon}).addTo(map);
+                var icon    = L.divIcon({className: 'marker-icon index-' + allMarkers.length, size: [100, 100]}),
+                    marker  = L.marker([model.latitude, model.longitude], {icon: icon}).addTo(map);
+
+                // Keep a track of the markers in the collection.
+                allMarkers.push({ model: model, marker: marker });
 
             });
 

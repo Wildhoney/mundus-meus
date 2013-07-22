@@ -116,6 +116,7 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
      */
     $scope.findMarker = function(model) {
         $scope.model = model;
+        $mundusMeus.highlightMarker(model);
         $mundusMeus.toLocation(model.latitude, model.longitude);
     };
 
@@ -153,6 +154,7 @@ SearchCtrl.$inject = ['$scope', '$http', '$interpolate', '$mundusMeus'];
 /**
  * @class MapCtrl
  * @param $scope {Object}
+ * @param $mundusMeus {Object}
  * @constructor
  */
 function MapCtrl($scope, $mundusMeus) {

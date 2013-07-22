@@ -36,11 +36,21 @@ app.factory('$mundusMeus', function($rootScope) {
     };
 
     /**
-     * @method plotMarkers
+     * @method highlightMarker
+     * @param model {Object}
      * @return {void}
      */
-    service.plotMarkers = function(markers) {
-        $rootScope.$broadcast('plotMarkers', markers);
+    service.highlightMarker = function(model) {
+        $rootScope.$broadcast('highlightMarker', model);
+    };
+
+    /**
+     * @method plotMarkers
+     * @param models {Array}
+     * @return {void}
+     */
+    service.plotMarkers = function(models) {
+        $rootScope.$broadcast('plotMarkers', models);
     };
 
 //    service.detectLocation = function() {

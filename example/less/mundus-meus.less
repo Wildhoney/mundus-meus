@@ -20,6 +20,15 @@
             border: 3px solid white;
             box-shadow: 0 0 5px rgba(0, 0, 0, .55);
             box-sizing: content-box;
+            -webkit-transition: all .55s;
+
+            &.active {
+                width: 100px !important;
+                height: 100px !important;
+                margin-left: -50px !important;
+                margin-top: -50px !important;
+                z-index: 2001 !important;
+            }
 
         }
 
