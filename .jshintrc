@@ -7,6 +7,7 @@
     "noarg": true,
     "sub": true,
     "undef": false,
+    "globals": { "angular": false },
     "boss": true,
     "eqnull": true,
     "node": true
