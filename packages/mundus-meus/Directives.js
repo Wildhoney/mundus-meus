@@ -85,9 +85,9 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
 
         });
 
-    }}}
+    }};
 
-]);
+}]);
 
 /**
  * @directive find-location
@@ -118,6 +118,6 @@ app.directive('openLocationResults', ['$mundusMeus', function($mundusMeus) {
         $element.bind('click', function() {
             $mundusMeus.openSearchResults();
         });
-    }}}
+    }};
 
-]);
+}]);

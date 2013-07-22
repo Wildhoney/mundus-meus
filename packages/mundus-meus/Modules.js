@@ -49,8 +49,8 @@ app.factory('$mundusMeus', function($rootScope) {
      * @param models {Array}
      * @return {void}
      */
-    service.plotMarkers = function(models) {
-        $rootScope.$broadcast('plotMarkers', models);
+    service.plotMarkers = function(markers) {
+        $rootScope.$broadcast('plotMarkers', markers);
     };
 
 //    service.detectLocation = function() {
