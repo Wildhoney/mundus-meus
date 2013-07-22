@@ -35,7 +35,7 @@
             <div class="form">
                 <input type="text" class="search" ng-model="location" placeholder="Search for a particular place..." />
                 <input find-location ng-click="getGeolocation();" type="button" class="btn" value="Detect" ng-disabled="!detectionAllowed" />
-                <input find-location ng-click="getGeolocation(location);" type="button" class="btn" value="Find..." />
+                <input find-location ng-click="getGeolocation(location);" type="button" class="btn" value="Find..." ng-disabled="!location" />
             </div>
 
             <ul class="geolocation-results" ng-hide="{{results.length}}">
