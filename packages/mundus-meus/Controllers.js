@@ -87,6 +87,7 @@ GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$timeout', '$mund
  * @class SearchCtrl
  * @param $scope {Object}
  * @param $http {Function}
+ * @param $interpolate {Function}
  * @param $mundusMeus {Object}
  * @constructor
  */
@@ -96,9 +97,15 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
 
     $scope.active   = false;
     $scope.results  = [];
+    $scope.model    = {};
     $scope.position = { latitude: null, longitude: null };
 
+    $scope.isActive = function(model) {
+        return ($scope.model === model);
+    };
+
     $scope.findMarker = function(model) {
+        $scope.model = model;
         $mundusMeus.toLocation(model.latitude, model.longitude);
     };
 

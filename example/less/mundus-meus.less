@@ -169,8 +169,15 @@
             line-height: 35px;
             padding: 0 10px 0 10px;
             font-size: 12px;
-            cursor: pointer;
             position: relative;
+
+            &:not(.active) {
+                cursor: pointer;
+            }
+
+            &.active {
+                background-color: lightgray;
+            }
 
             &:first-letter {
 
@@ -178,7 +185,7 @@
 
             }
 
-            &:hover {
+            &:hover:not(.active) {
 
                 &:before {
 
@@ -201,7 +208,7 @@
 
             }
 
-            &:not(.title):hover {
+            &:not(.title):not(.active):hover {
 
                 background: -webkit-linear-gradient(top, rgba(147,183,223,1) 0%, rgba(119,162,210,1) 100%);
                 border-bottom: 1px solid #6c95c3;
