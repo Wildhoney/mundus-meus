@@ -23,7 +23,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
      * @param data {object}
      * @return {void}
      */
-    $scope.setGeolocation = function(data) {
+    $scope.setGeolocation = function setGeolocation(data) {
         $mundusMeus.setGeolocation(data);
         $mundusMeus.toLocation(data.latitude, data.longitude);
     };
@@ -33,13 +33,13 @@ function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
      * @param name {String}
      * @return {void}
      */
-    $scope.getGeolocation = function(name) {
+    $scope.getGeolocation = function getGeolocation(name) {
 
-        var getResults = function() {
+        var getResults = function getResults() {
 
             var url = $scope.$eval($interpolate(URL_GEOLOCATE));
 
-            $http.get(url).success(function(data) {
+            $http.get(url).success(function success(data) {
 
                 $scope.results = data;
 
@@ -50,7 +50,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
                     // find the results within close proximity.
                     $scope.setGeolocation($scope.results[0]);
 
-                    $timeout(function() {
+                    $timeout(function timeout() {
                         // Open the search results after 800 milliseconds.
                         $mundusMeus.openSearchResults();
                     }, 800);
@@ -64,7 +64,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
         if (typeof name === 'undefined') {
 
             // If we haven't set a name then we'll use the browser to find their location.
-            navigator.geolocation.getCurrentPosition(function(position) {
+            navigator.geolocation.getCurrentPosition(function getCurrentPosition(position) {
 
                 // Set the location as the determined coordinates.
                 $scope.location = position.coords.latitude + ',' + position.coords.longitude;
@@ -107,7 +107,7 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
      * @param model {Object}
      * @return {Boolean}
      */
-    $scope.isActive = function(model) {
+    $scope.isActive = function isActive(model) {
         return ($scope.model === model);
     };
 
@@ -116,19 +116,19 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
      * @param model {Object}
      * @return {void}
      */
-    $scope.findMarker = function(model) {
+    $scope.findMarker = function findMarker(model) {
         $scope.model = model;
         $mundusMeus.highlightMarker(model);
         $mundusMeus.toLocation(model.latitude, model.longitude);
     };
 
     /**
-     * @event entityName
+     * @event locationUpdated
      * @param context {Object}
      * @param data {Object}
      * @return {void}
      */
-    $scope.$on('entityName', function(context, data) {
+    $scope.$on('locationUpdated', function locationUpdated(context, data) {
 
         $scope.position.latitude    = data.latitude;
         $scope.position.longitude   = data.longitude;
@@ -146,7 +146,7 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
      * @event displaySearchResults
      * @return {void}
      */
-    $scope.$on('displaySearchResults', function() {
+    $scope.$on('displaySearchResults', function displaySearchResults() {
         $scope.active = true;
     });
 
@@ -169,7 +169,7 @@ MapCtrl.$inject = ['$scope', '$mundusMeus'];
  * @type {Function}
  * Container for the Leaflet map.
  */
-app.directive('map', ['$mundusMeus', function($mundusMeus) {
+app.directive('map', ['$mundusMeus', function map($mundusMeus) {
 
     /**
      * @property allMarkers
@@ -235,7 +235,11 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
             var latLongBounds = [];
 
             // Clear all of the markers.
-            $mundusMeus.highlightMarker();
+            allMarkers.forEach(function(item) {
+                map.removeLayer(item.marker);
+            });
+
+            // $mundusMeus.highlightMarker();
             allMarkers.length = 0;
 
             // Iterate over all of the markers for this particular location.
@@ -267,10 +271,10 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
  * @type {Function}
  * Button that initialises the geolocation.
  */
-app.directive('findLocation', function() {
+app.directive('findLocation', function findLocation() {
 
     return { restrict: 'A', link: function linkFn($scope, $element) {
-        $element.bind('click', function() {
+        $element.bind('click', function click() {
             $scope.active = true;
             $scope.$apply();
         });
@@ -284,10 +288,10 @@ app.directive('findLocation', function() {
  * @type {Function}
  * Opens the results that relate to the region the user clicked on.
  */
-app.directive('openLocationResults', ['$mundusMeus', function($mundusMeus) {
+app.directive('openLocationResults', ['$mundusMeus', function openLocationResults($mundusMeus) {
 
     return { restrict: 'A', link: function linkFn($scope, $element) {
-        $element.bind('click', function() {
+        $element.bind('click', function click() {
             $mundusMeus.openSearchResults();
         });
     }};
@@ -308,8 +312,8 @@ app.factory('$mundusMeus', function($rootScope) {
      * @param data {String}
      * @return {void}
      */
-    service.setGeolocation = function(data) {
-        $rootScope.$broadcast('entityName', data);
+    service.setGeolocation = function setLocation(data) {
+        $rootScope.$broadcast('locationUpdated', data);
     };
 
     /**
@@ -318,7 +322,7 @@ app.factory('$mundusMeus', function($rootScope) {
      * @param longitude {number}
      * @return {void}
      */
-    service.toLocation = function(latitude, longitude) {
+    service.toLocation = function toLocation(latitude, longitude) {
         $rootScope.$broadcast('positionUpdate', latitude, longitude);
     };
 
@@ -326,7 +330,7 @@ app.factory('$mundusMeus', function($rootScope) {
      * @method openSearchResults
      * @return {void}
      */
-    service.openSearchResults = function() {
+    service.openSearchResults = function openSearchResults() {
         $rootScope.$broadcast('displaySearchResults');
     };
 
@@ -335,22 +339,18 @@ app.factory('$mundusMeus', function($rootScope) {
      * @param model {Object}
      * @return {void}
      */
-    service.highlightMarker = function(model) {
+    service.highlightMarker = function highlightMarker(model) {
         $rootScope.$broadcast('highlightMarker', model);
     };
 
     /**
      * @method plotMarkers
-     * @param models {Array}
+     * @param markers {Array}
      * @return {void}
      */
-    service.plotMarkers = function(markers) {
+    service.plotMarkers = function plotMarkers(markers) {
         $rootScope.$broadcast('plotMarkers', markers);
     };
-
-//    service.detectLocation = function() {
-//        $rootScope.$broadcast('detectLocation');
-//    };
 
     return service;
 
