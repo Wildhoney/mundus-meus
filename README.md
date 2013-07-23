@@ -18,7 +18,7 @@ API
 Mundus Meus defines two API routes:
 
  * `api/Geolocate/Nottingham` &ndash; Discovers the latitude/longitude for <i>Nottingham</i>;
- * `api/Search/52.95385025/-1.1698803748747` &ndash; Searches for entities around the lat/long.
+ * `api/Search/52.95385025/-1.1698803748747/10` &ndash; Searches for entities around the lat/long &ndash; optional radius in miles.
 
 **Please note**: the aforementioned routes require `MOD_REWRITE` to be enabled &ndash; `AllowOverride` also needs to be set to `All` in order for the routes to resolve correctly.
 
