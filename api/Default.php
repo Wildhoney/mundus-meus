@@ -33,11 +33,11 @@ Route::get('/Geolocate/(:all)', function($query) {
 
 });
 
-Route::get('/Search/(:any)/(:any)', function($latitude, $longitude) {
+Route::get('/Search/(:any)/(:any)/(:num?)', function($latitude, $longitude, $radiusInMiles = 10) {
 
     // Instantiate the desired service class via the factory.
     $service = Factory::getInstance()->getService(Factory::SERVICE_TESCO);
-    $service->setRadiusInMiles(10);
+    $service->setRadiusInMiles($radiusInMiles);
     $service->setLatitude($latitude);
     $service->setLongitude($longitude);
     return $service->getJSON();
