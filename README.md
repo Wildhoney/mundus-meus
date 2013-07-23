@@ -52,7 +52,7 @@ As you're probably not wanting to map Tescos stores, Mundus Meus allows you to a
  * Implement the `_parseData` hook which allows you to parse the idiosyncratic response from the API;
  * Open `Default.php` and change the `getService` method to the name (without prefix) of your new service &ndash; `Halfords`;
 
-Mundus Meus uses the <a href="http://en.wikipedia.org/wiki/Template_method_pattern" target="_blank">template method pattern</a> and therefore if you're overwriting methods in the abstract and then calling `super`, you're doing something wrong.
+Mundus Meus uses the <a href="http://en.wikipedia.org/wiki/Template_method_pattern" target="_blank">template method pattern</a> and therefore if you're overwriting methods from the abstract and then calling `super`, you're doing something wrong.
 
 Etymology
 -----------
