@@ -13,7 +13,7 @@ app.factory('$mundusMeus', function($rootScope) {
      * @param data {String}
      * @return {void}
      */
-    service.setGeolocation = function(data) {
+    service.setGeolocation = function setLocation(data) {
         $rootScope.$broadcast('entityName', data);
     };
 
@@ -23,7 +23,7 @@ app.factory('$mundusMeus', function($rootScope) {
      * @param longitude {number}
      * @return {void}
      */
-    service.toLocation = function(latitude, longitude) {
+    service.toLocation = function toLocation(latitude, longitude) {
         $rootScope.$broadcast('positionUpdate', latitude, longitude);
     };
 
@@ -31,7 +31,7 @@ app.factory('$mundusMeus', function($rootScope) {
      * @method openSearchResults
      * @return {void}
      */
-    service.openSearchResults = function() {
+    service.openSearchResults = function openSearchResults() {
         $rootScope.$broadcast('displaySearchResults');
     };
 
@@ -40,22 +40,18 @@ app.factory('$mundusMeus', function($rootScope) {
      * @param model {Object}
      * @return {void}
      */
-    service.highlightMarker = function(model) {
+    service.highlightMarker = function highlightMarker(model) {
         $rootScope.$broadcast('highlightMarker', model);
     };
 
     /**
      * @method plotMarkers
-     * @param models {Array}
+     * @param markers {Array}
      * @return {void}
      */
-    service.plotMarkers = function(markers) {
+    service.plotMarkers = function plotMarkers(markers) {
         $rootScope.$broadcast('plotMarkers', markers);
     };
-
-//    service.detectLocation = function() {
-//        $rootScope.$broadcast('detectLocation');
-//    };
 
     return service;
 
