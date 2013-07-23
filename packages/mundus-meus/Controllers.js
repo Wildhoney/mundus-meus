@@ -144,7 +144,7 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
      * @param radius {Number}
      * @return {void}
      */
-    $scope.$on('radiusUpdated', function(context, radius) {
+    $scope.$on('radiusUpdated', function radiusUpdated(context, radius) {
         $scope.radius = radius;
     });
 
