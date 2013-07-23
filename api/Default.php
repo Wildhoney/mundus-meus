@@ -26,7 +26,7 @@ set_include_path(join(';', $paths));
 Route::get('/Geolocate/(:all)', function($query) {
 
     // Instantiate the desired service class via the factory.
-    $geolocator = Factory::getInstance()->getGeolocator(Factory::GEOLOCATOR_NOMINATIM);
+    $geolocator = Factory::getInstance()->getGeolocator('Nominatim');
     $geolocator->restrictCountry('United Kingdom');
     $geolocator->setQuery($query);
     return $geolocator->getJSON();
@@ -36,7 +36,7 @@ Route::get('/Geolocate/(:all)', function($query) {
 Route::get('/Search/(:any)/(:any)/(:num?)', function($latitude, $longitude, $radiusInMiles = 10) {
 
     // Instantiate the desired service class via the factory.
-    $service = Factory::getInstance()->getService(Factory::SERVICE_TESCO);
+    $service = Factory::getInstance()->getService('Tesco');
     $service->setRadiusInMiles($radiusInMiles);
     $service->setLatitude($latitude);
     $service->setLongitude($longitude);

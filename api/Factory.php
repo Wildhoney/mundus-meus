@@ -10,18 +10,6 @@ namespace MundusMeus;
 class Factory {
 
     /**
-     * @const GEOLOCATOR_NOMINATIM
-     * @type string
-     */
-    const GEOLOCATOR_NOMINATIM = 'Geolocator_Nominatim';
-
-    /**
-     * @const SERVICE_TESCO
-     * @type string
-     */
-    const SERVICE_TESCO = 'Service_Tesco';
-
-    /**
      * @var $_instance
      * Instance of the `Factory` class.
      * @static
@@ -60,7 +48,7 @@ class Factory {
      * @return \MundusMeus\Geolocator_Abstract
      */
     public function getGeolocator($name) {
-        return $this->_include($name);
+        return $this->_include(sprintf('Geolocator_%s', $name));
     }
 
     /**
@@ -70,7 +58,7 @@ class Factory {
      * @return \MundusMeus\Service_Abstract
      */
     public function getService($name) {
-        return $this->_include($name);
+        return $this->_include(sprintf('Service_%s', $name));
     }
 
     /**
