@@ -9,6 +9,15 @@ app.factory('$mundusMeus', function($rootScope) {
     var service = {};
 
     /**
+     * @method setRadius
+     * @param radius {Number}
+     * @return {void}
+     */
+    service.setRadius = function setRadius(radius) {
+        $rootScope.$broadcast('radiusUpdated', radius);
+    };
+
+    /**
      * @method setGeolocation
      * @param data {String}
      * @return {void}
@@ -19,8 +28,8 @@ app.factory('$mundusMeus', function($rootScope) {
 
     /**
      * @method toLocation
-     * @param latitude {number}
-     * @param longitude {number}
+     * @param latitude {Number}
+     * @param longitude {Number}
      * @return {void}
      */
     service.toLocation = function toLocation(latitude, longitude) {

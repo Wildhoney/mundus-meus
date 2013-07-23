@@ -25,7 +25,7 @@ class Service_Tesco extends Service_Abstract {
      * @const API_URL
      * URL to the Tesco Store Locator API.
      */
-    const API_URL = 'http://www.tesco.com/storeLocator/sf.asp?Lat=%f&Lng=%f&Rad=10&storeType=all';
+    const API_URL = 'http://www.tesco.com/storeLocator/sf.asp?Lat=%f&Lng=%f&Rad=25&storeType=all';
 
     /**
      * @method _parseData

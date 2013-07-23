@@ -15,10 +15,27 @@ function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
     $scope.active           = false;
     $scope.location         = null;
     $scope.detectionAllowed = (navigator.geolocation) ? true : false;
+    $scope.radii            = [
+        { name: '1 mile', value: 1 },
+        { name: '2 miles', value: 2 },
+        { name: '5 miles', value: 5 },
+        { name: '10 miles', value: 10 },
+        { name: '25 miles', value: 25 }
+    ];
+    $scope.radius           = $scope.radii[2];
+
+    /**
+     * @method setRadius
+     * @param radius {Number}
+     * @return {void}
+     */
+    $scope.setRadius = function setRadius(radius) {
+        $mundusMeus.setRadius(radius.value);
+    };
 
     /**
      * @method setGeolocation
-     * @param data {object}
+     * @param data {Object}
      * @return {void}
      */
     $scope.setGeolocation = function setGeolocation(data) {
@@ -93,10 +110,11 @@ GeolocationCtrl.$inject = ['$scope', '$http', '$interpolate', '$timeout', '$mund
  */
 function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
 
-    var URL_SEARCH  = './../api/Search/{{position.latitude}}/{{position.longitude}}';
+    var URL_SEARCH  = './../api/Search/{{position.latitude}}/{{position.longitude}}/{{radius}}';
 
     $scope.active   = false;
     $scope.results  = [];
+    $scope.radius   = null;
     $scope.model    = {};
     $scope.position = { latitude: null, longitude: null };
 
@@ -119,6 +137,16 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
         $mundusMeus.highlightMarker(model);
         $mundusMeus.toLocation(model.latitude, model.longitude);
     };
+
+    /**
+     * @event radiusUpdated
+     * @param context {Object}
+     * @param radius {Number}
+     * @return {void}
+     */
+    $scope.$on('radiusUpdated', function(context, radius) {
+        $scope.radius = radius;
+    });
 
     /**
      * @event locationUpdated

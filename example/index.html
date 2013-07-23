@@ -32,6 +32,8 @@
 
             <h1>My Location</h1>
 
+            <select class="radius" ng-model="radius" ng-change="setRadius(radius)" ng-options="r.name for r in radii"></select>
+
             <div class="form">
                 <input type="text" class="search" ng-model="location" placeholder="Search for a particular place..." />
                 <input find-location ng-click="getGeolocation();" type="button" class="btn" value="Detect" ng-disabled="!detectionAllowed" />
