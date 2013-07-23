@@ -50,7 +50,7 @@ As you're probably not wanting to map Tescos stores, Mundus Meus allows you to a
  * Change the `$_map` property to map the properties from the API to `name`, `latitude`, `longitude`, et cetera...;
  * Modify the `API_URL` constant to the Halfords store location URL (database interface coming shortly);
  * Implement the `_parseData` hook which allows you to parse the idiosyncratic response from the API;
- * Open `Default.php` and change the `getService` method to the name of your new service &ndash; `Service_Halfords`;
+ * Open `Default.php` and change the `getService` method to the name (without prefix) of your new service &ndash; `Halfords`;
 
 Etymology
 -----------
