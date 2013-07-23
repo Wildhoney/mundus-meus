@@ -92,7 +92,9 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
 
             });
 
-            map.fitBounds([latLongBounds]);
+            if (latLongBounds.length > 0) {
+                map.fitBounds([latLongBounds]);
+            }
 
         });
 
