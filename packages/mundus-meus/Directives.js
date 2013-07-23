@@ -4,7 +4,7 @@
  * @type {Function}
  * Container for the Leaflet map.
  */
-app.directive('map', ['$mundusMeus', function($mundusMeus) {
+app.directive('map', ['$mundusMeus', function map($mundusMeus) {
 
     /**
      * @property allMarkers
@@ -106,7 +106,7 @@ app.directive('map', ['$mundusMeus', function($mundusMeus) {
  * @type {Function}
  * Button that initialises the geolocation.
  */
-app.directive('findLocation', function() {
+app.directive('findLocation', function findLocation() {
 
     return { restrict: 'A', link: function linkFn($scope, $element) {
         $element.bind('click', function() {
@@ -123,7 +123,7 @@ app.directive('findLocation', function() {
  * @type {Function}
  * Opens the results that relate to the region the user clicked on.
  */
-app.directive('openLocationResults', ['$mundusMeus', function($mundusMeus) {
+app.directive('openLocationResults', ['$mundusMeus', function openLocationResults($mundusMeus) {
 
     return { restrict: 'A', link: function linkFn($scope, $element) {
         $element.bind('click', function() {
