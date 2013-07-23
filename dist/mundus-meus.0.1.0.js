@@ -52,11 +52,18 @@ function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
      */
     $scope.getGeolocation = function getGeolocation(name) {
 
+        $scope.noResults = false;
+
         var getResults = function getResults() {
 
             var url = $scope.$eval($interpolate(URL_GEOLOCATE));
 
             $http.get(url).success(function success(data) {
+
+                if (data.length === 0) {
+                    $scope.noResults = true;
+                    return;
+                }
 
                 $scope.results = data;
 
@@ -160,12 +167,19 @@ function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
 
         $scope.position.latitude    = data.latitude;
         $scope.position.longitude   = data.longitude;
+        $scope.noResults            = false;
         var url                     = $scope.$eval($interpolate(URL_SEARCH));
 
         $http.get(url).success(function(data) {
+
+            if (data.length === 0) {
+                $scope.noResults = true;
+            }
+
             $scope.results = data;
             $scope.display = true;
             $mundusMeus.plotMarkers(data);
+
         });
 
     });
@@ -285,7 +299,9 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
 
             });
 
-            map.fitBounds([latLongBounds]);
+            if (latLongBounds.length > 0) {
+                map.fitBounds([latLongBounds]);
+            }
 
         });
 
