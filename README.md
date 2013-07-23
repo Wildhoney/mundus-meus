@@ -1,3 +1,5 @@
+<img src="https://api.travis-ci.org/Wildhoney/mundus-meus.png" alt="Travis" />
+
 Mundus Meus 0.1.0
 ===========
 
