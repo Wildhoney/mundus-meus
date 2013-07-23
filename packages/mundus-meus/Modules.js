@@ -14,7 +14,7 @@ app.factory('$mundusMeus', function($rootScope) {
      * @return {void}
      */
     service.setGeolocation = function setLocation(data) {
-        $rootScope.$broadcast('entityName', data);
+        $rootScope.$broadcast('locationUpdated', data);
     };
 
     /**

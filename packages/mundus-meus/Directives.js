@@ -109,7 +109,7 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
 app.directive('findLocation', function findLocation() {
 
     return { restrict: 'A', link: function linkFn($scope, $element) {
-        $element.bind('click', function() {
+        $element.bind('click', function click() {
             $scope.active = true;
             $scope.$apply();
         });
@@ -126,7 +126,7 @@ app.directive('findLocation', function findLocation() {
 app.directive('openLocationResults', ['$mundusMeus', function openLocationResults($mundusMeus) {
 
     return { restrict: 'A', link: function linkFn($scope, $element) {
-        $element.bind('click', function() {
+        $element.bind('click', function click() {
             $mundusMeus.openSearchResults();
         });
     }};
