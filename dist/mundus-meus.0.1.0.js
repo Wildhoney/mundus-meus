@@ -24,7 +24,7 @@ function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
         { name: '10 miles', value: 10 },
         { name: '25 miles', value: 25 }
     ];
-    $scope.radius           = $scope.radii[2];
+    $scope.radius           = $scope.radii[3];
 
     /**
      * @method setRadius
