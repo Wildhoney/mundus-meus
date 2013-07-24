@@ -246,8 +246,13 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
         // Instantiate the map.
         var map = L.map(mapElement, { center: [51.505, -0.09], zoom: 13 });
 
+        var tileUrl = mapElement.getAttribute('data-tiles') ||
+                      'http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png';
+
+        alert(tileUrl);
+
         // Insert the tile layer; can be changed by supplying the `tiles` attribute in the options.
-        L.tileLayer('http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer(tileUrl).addTo(map);
 
         /**
          * @event highlightMarker
