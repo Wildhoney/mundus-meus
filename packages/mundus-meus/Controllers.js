@@ -148,6 +148,21 @@ app.controller('SearchCtrl', ['$scope', '$http', '$interpolate', '$mundusMeus',
         };
 
         /**
+         * @event locationFromMarker
+         * @return {void}
+         */
+        $scope.$on('locationFromMarker', function locationFromMarker(context, model) {
+            $scope.findMarker(model);
+            $scope.$apply();
+
+            var position = $scope.results.sort(function(a, b) {
+                    return (a.distance - b.distance);
+                }).indexOf(model) + 3;
+
+            $('ul.search').scrollTo('li:eq(' + position + ')', 550);
+        });
+
+        /**
          * @event radiusUpdated
          * @param context {Object}
          * @param radius {Number}

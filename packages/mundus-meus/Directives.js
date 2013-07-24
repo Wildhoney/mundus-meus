@@ -84,6 +84,11 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
                 var icon    = L.divIcon({className: 'marker-icon index-' + allMarkers.length, size: [100, 100]}),
                     marker  = L.marker([model.latitude, model.longitude], {icon: icon}).addTo(map);
 
+                marker.on('click', function() {
+                    // Emit the `markerSelected` event when the user clicks on any of the markers.
+                    $scope.$emit('markerSelected', model);
+                });
+
                 // Keep a track of the markers in the collection.
                 allMarkers.push({ model: model, marker: marker });
 

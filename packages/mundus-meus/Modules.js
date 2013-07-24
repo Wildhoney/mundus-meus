@@ -9,6 +9,14 @@ app.factory('$mundusMeus', function($rootScope) {
     var service = {};
 
     /**
+     * @event markerSelected
+     * @return {void}
+     */
+    $rootScope.$on('markerSelected', function markerSelected(context, model) {
+        $rootScope.$broadcast('locationFromMarker', model);
+    });
+
+    /**
      * @method setRadius
      * @param radius {Number}
      * @return {void}
