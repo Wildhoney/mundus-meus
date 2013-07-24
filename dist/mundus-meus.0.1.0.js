@@ -150,6 +150,21 @@ app.controller('SearchCtrl', ['$scope', '$http', '$interpolate', '$mundusMeus',
         };
 
         /**
+         * @event locationFromMarker
+         * @return {void}
+         */
+        $scope.$on('locationFromMarker', function locationFromMarker(context, model) {
+            $scope.findMarker(model);
+            $scope.$apply();
+
+            var position = $scope.results.sort(function(a, b) {
+                    return (a.distance - b.distance);
+                }).indexOf(model) + 3;
+
+            $('ul.search').scrollTo('li:eq(' + position + ')', 550);
+        });
+
+        /**
          * @event radiusUpdated
          * @param context {Object}
          * @param radius {Number}
@@ -294,6 +309,11 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
                 var icon    = L.divIcon({className: 'marker-icon index-' + allMarkers.length, size: [100, 100]}),
                     marker  = L.marker([model.latitude, model.longitude], {icon: icon}).addTo(map);
 
+                marker.on('click', function() {
+                    // Emit the `markerSelected` event when the user clicks on any of the markers.
+                    $scope.$emit('markerSelected', model);
+                });
+
                 // Keep a track of the markers in the collection.
                 allMarkers.push({ model: model, marker: marker });
 
@@ -353,6 +373,14 @@ app.directive('openLocationResults', ['$mundusMeus', function openLocationResult
 app.factory('$mundusMeus', function($rootScope) {
 
     var service = {};
+
+    /**
+     * @event markerSelected
+     * @return {void}
+     */
+    $rootScope.$on('markerSelected', function markerSelected(context, model) {
+        $rootScope.$broadcast('locationFromMarker', model);
+    });
 
     /**
      * @method setRadius
