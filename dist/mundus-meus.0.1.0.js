@@ -1,7 +1,7 @@
 "use strict";
 var app = angular.module('mundusMeusApp', []);
 /**
- * @class GeolocationCtrl
+ * @class GeolocationController
  * @param $scope {Object}
  * @param $http {Function}
  * @param $interpolate {Function}
@@ -9,8 +9,8 @@ var app = angular.module('mundusMeusApp', []);
  * @param $mundusMeus {Object}
  * @constructor
  */
-app.controller('GeolocationCtrl', ['$scope', '$http', '$interpolate', '$timeout', '$mundusMeus',
-    function GeolocationCtrl($scope, $http, $interpolate, $timeout, $mundusMeus) {
+app.controller('GeolocationController', ['$scope', '$http', '$interpolate', '$timeout', '$mundusMeus',
+    function GeolocationController($scope, $http, $interpolate, $timeout, $mundusMeus) {
 
         var URL_GEOLOCATE       = './../api/Geolocate/{{location}}';
 
@@ -111,15 +111,15 @@ app.controller('GeolocationCtrl', ['$scope', '$http', '$interpolate', '$timeout'
 );
 
 /**
- * @class SearchCtrl
+ * @class SearchController
  * @param $scope {Object}
  * @param $http {Function}
  * @param $interpolate {Function}
  * @param $mundusMeus {Object}
  * @constructor
  */
-app.controller('SearchCtrl', ['$scope', '$http', '$interpolate', '$mundusMeus',
-    function SearchCtrl($scope, $http, $interpolate, $mundusMeus) {
+app.controller('SearchController', ['$scope', '$http', '$interpolate', '$mundusMeus',
+    function SearchController($scope, $http, $interpolate, $mundusMeus) {
 
         var URL_SEARCH  = './../api/Search/{{position.latitude}}/{{position.longitude}}/{{radius}}';
 
@@ -213,13 +213,13 @@ app.controller('SearchCtrl', ['$scope', '$http', '$interpolate', '$mundusMeus',
 );
 
 /**
- * @class MapCtrl
+ * @class MapController
  * @param $scope {Object}
  * @param $mundusMeus {Object}
  * @constructor
  */
-app.controller('MapCtrl', ['$scope', '$mundusMeus',
-    function MapCtrl() {
+app.controller('MapController', ['$scope', '$mundusMeus',
+    function MapController() {
 
     }]
 );

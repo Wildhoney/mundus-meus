@@ -29,7 +29,7 @@
 
     <div ng-app="mundusMeusApp" class="mundus-meus">
 
-        <div class="geolocation" ng-class="{active:active}" ng-controller="GeolocationCtrl">
+        <div class="geolocation" ng-class="{active:active}" ng-controller="GeolocationController">
 
             <h1>My Location</h1>
 
@@ -54,7 +54,7 @@
 
         </div>
 
-        <ul class="search" ng-class="{active:active}" ng-controller="SearchCtrl">
+        <ul class="search" ng-class="{active:active}" ng-controller="SearchController">
 
             <li class="title"><h2>Showing {{results.length}} Tesco Stores</h2></li>
             <li class="loading-data" ng-show="!results.length && !noResults">Loading Results&hellip;</li>
@@ -67,7 +67,7 @@
 
         </ul>
 
-        <map ng-controller="MapCtrl" data-tiles="http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png">
+        <map ng-controller="MapController" data-tiles="http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png">
 
         </map>
 

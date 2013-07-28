@@ -1,6 +1,6 @@
 describe('Mundus Meus', function() {
 
-    describe('GeolocationCtrl', function() {
+    describe('GeolocationController', function() {
 
         var $httpBackend, $controller, createController;
 
@@ -20,7 +20,7 @@ describe('Mundus Meus', function() {
         }));
 
         it ('Should contain an empty results array', function() {
-            var scope = createController('GeolocationCtrl');
+            var scope = createController('GeolocationController');
             scope.getGeolocation('Nottingham');
             $httpBackend.flush();
             expect(scope.results.length).toEqual(3);
