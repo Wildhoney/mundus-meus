@@ -63,12 +63,13 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
 
         /**
          * @event plotMarkers
-         * @param {Object}
-         * @models {Array}
+         * @param context {Object}
+         * @param models {Array}
+         * @param homeLocation {Object}
          * Plot the markers on the Leaflet.js map
          * @return {void}
          */
-        $scope.$on('plotMarkers', function(context, models) {
+        $scope.$on('plotMarkers', function(context, models, homeLocation) {
 
             var latLongBounds = [];
 
@@ -84,7 +85,7 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
             models.forEach(function(model) {
 
                 // Append all of the markers onto the Leaflet.js map.
-                var icon    = L.divIcon({className: 'marker-icon index-' + allMarkers.length, size: [100, 100]}),
+                var icon    = L.divIcon({className: 'marker-icon', size: [100, 100]}),
                     marker  = L.marker([model.latitude, model.longitude], {icon: icon}).addTo(map);
 
                 marker.on('click', function() {
@@ -99,6 +100,15 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
                 latLongBounds.push([model.latitude, model.longitude]);
 
             });
+
+            // Add the home marker.
+
+            // Append all of the markers onto the Leaflet.js map.
+            var icon    = L.divIcon({className: 'marker-icon is-home', size: [100, 100]}),
+                marker  = L.marker([homeLocation.latitude, homeLocation.longitude], {icon: icon}).addTo(map);
+
+            allMarkers.push({ model: homeLocation, marker: marker });
+            latLongBounds.push([homeLocation.latitude, homeLocation.longitude]);
 
             if (latLongBounds.length > 0) {
                 map.fitBounds([latLongBounds]);

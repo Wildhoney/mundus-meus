@@ -26,8 +26,6 @@
 
         div.marker-icon {
 
-            background-color: #d14949;
-            background: -webkit-linear-gradient(top, rgba(230,100,100,1) 0%, rgba(209,73,73,1) 100%);
             border-radius: 140px;
             border: 3px solid white;
             box-shadow: 0 0 5px rgba(0, 0, 0, .55);
@@ -40,6 +38,16 @@
                 margin-left: -15px !important;
                 margin-top: -15px !important;
                 z-index: 2001 !important;
+            }
+
+            &:not(.is-home) {
+                background-color: #d14949;
+                background: -webkit-linear-gradient(top, rgba(230,100,100,1) 0%, rgba(209,73,73,1) 100%);
+            }
+
+            &.is-home {
+                background: rgb(138,182,107);
+                background: -webkit-linear-gradient(top, rgba(138,182,107,1) 0%, rgba(57,130,53,1) 100%);
             }
 
         }

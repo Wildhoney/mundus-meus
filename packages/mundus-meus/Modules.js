@@ -64,10 +64,11 @@ app.factory('$mundusMeus', function($rootScope) {
     /**
      * @method plotMarkers
      * @param markers {Array}
+     * @param homeLocation {Object}
      * @return {void}
      */
-    service.plotMarkers = function plotMarkers(markers) {
-        $rootScope.$broadcast('plotMarkers', markers);
+    service.plotMarkers = function plotMarkers(markers, homeLocation) {
+        $rootScope.$broadcast('plotMarkers', markers, homeLocation);
     };
 
     return service;

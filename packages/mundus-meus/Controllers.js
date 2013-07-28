@@ -40,8 +40,8 @@ app.controller('GeolocationController', ['$scope', '$http', '$interpolate', '$ti
          * @return {void}
          */
         $scope.setGeolocation = function setGeolocation(data) {
-            $mundusMeus.setGeolocation(data);
             $mundusMeus.toLocation(data.latitude, data.longitude);
+            $mundusMeus.setGeolocation(data);
         };
 
         /**
@@ -193,7 +193,8 @@ app.controller('SearchController', ['$scope', '$http', '$interpolate', '$mundusM
 
                 $scope.results = data;
                 $scope.display = true;
-                $mundusMeus.plotMarkers(data);
+
+                $mundusMeus.plotMarkers(data, { latitude: $scope.position.latitude, longitude: $scope.position.longitude });
 
             });
 
