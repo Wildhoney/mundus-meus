@@ -22,7 +22,7 @@ app.directive('map', ['$mundusMeus', function map($mundusMeus) {
         var map = L.map(mapElement, { center: [51.505, -0.09], zoom: 13 });
 
         var tileUrl = mapElement.getAttribute('data-tiles') ||
-                      'http://b.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/102960/256/{z}/{x}/{y}.png';
+                      'http://mt1.google.com/vt/lyrs=m@110&hl=pl&x={x}&y={y}&z={z}';
 
         // Insert the tile layer; can be changed by supplying the `tiles` attribute in the options.
         L.tileLayer(tileUrl).addTo(map);
