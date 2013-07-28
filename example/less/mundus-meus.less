@@ -76,6 +76,8 @@
 
         h1 {
 
+            height: 38px;
+            line-height: 38px;
             background-color: darkgray;
             color: white;
             font-size: 20px;
@@ -89,6 +91,7 @@
             top: 15px;
             right: 15px;
             padding: 3px;
+            width: 100px;
             border: 1px solid white;
 
         }
@@ -194,6 +197,9 @@
         background-color: #f5f5f5;
         list-style-type: none;
         overflow-y: auto;
+        transition: all .75s;
+        -o-transition: all .75s;
+        -moz-transition: all .75s;
         -webkit-transition: all .75s;
         visibility: hidden;
 
@@ -246,7 +252,14 @@
 
             &:not(.title):not(.active):hover {
 
-                background: -webkit-linear-gradient(top, rgba(147,183,223,1) 0%, rgba(119,162,210,1) 100%);
+                background: rgb(147,183,223);
+                background: -moz-linear-gradient(top,  rgba(147,183,223,1) 0%, rgba(119,162,210,1) 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(147,183,223,1)), color-stop(100%,rgba(119,162,210,1)));
+                background: -webkit-linear-gradient(top,  rgba(147,183,223,1) 0%,rgba(119,162,210,1) 100%);
+                background: -o-linear-gradient(top,  rgba(147,183,223,1) 0%,rgba(119,162,210,1) 100%);
+                background: -ms-linear-gradient(top,  rgba(147,183,223,1) 0%,rgba(119,162,210,1) 100%);
+                background: linear-gradient(to bottom,  rgba(147,183,223,1) 0%,rgba(119,162,210,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93b7df', endColorstr='#77a2d2',GradientType=0 );
                 border-bottom: 1px solid #6c95c3;
                 color: white;
 

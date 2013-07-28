@@ -1,0 +1,5 @@
+@-moz-document url-prefix() {
+    ul.search {
+        left: 400px !important;
+    }
+}
