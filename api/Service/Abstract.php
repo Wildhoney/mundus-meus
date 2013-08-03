@@ -74,6 +74,8 @@ abstract class Service_Abstract implements Interface_Module {
 
         $url        = sprintf(static::API_URL, $this->_latitude, $this->_longitude);
         $data       = file_get_contents($url);
+        $radius     = $this->_radius;
+        $that       = $this;
 
         // Use the user defined `_parseData` method if it exists, otherwise attempt to decode the JSON data.
         if (method_exists($this, '_parseData')) $data = $this->_parseData($data);
@@ -90,11 +92,11 @@ abstract class Service_Abstract implements Interface_Module {
         }
 
         // Remove those that fall out of the radius.
-        $data = \array_filter($data, function(&$datum) {
+        $data = \array_filter($data, function(&$datum) use($radius, $that){
 
             // Compute the distance, and check whether it's in the desired radius in miles.
-            $distance           = $this->_calculateDistance($datum);
-            $isWithinDistance   = ($distance <= $this->_radius);
+            $distance           = $that->calculateDistance($datum);
+            $isWithinDistance   = ($distance <= $radius);
 
             if (!$isWithinDistance) {
                 // If it's more than the desired radius in miles then we'll discard it.
@@ -143,12 +145,14 @@ abstract class Service_Abstract implements Interface_Module {
     }
 
     /**
-     * @method _calculateDistance
+     * @method calculateDistance
      * @param $row
+     * It's only public because of the *bug* in PHP 5.3 of losing the class context
+     * when using an anonymous function. Instead we store a reference to `this`, and call
+     * the use the `use` construct.
      * @return integer
-     * @private
      */
-    private function _calculateDistance($row) {
+    public function calculateDistance($row) {
 
         // Typecast all of the latitude/longitude values to a float.
         $currentLatitude        = (float) $this->_latitude;

@@ -55,12 +55,13 @@ abstract class Geolocator_Abstract implements Interface_Module {
     public function getJSON() {
 
         $results = $this->_parseResults();
+        $country = $this->_country;
 
         if ($this->_country) {
             // If we've specified a country to restrict it to, then we need to restrict our results
             // to only that country.
-            $results = \array_filter($results, function($result) {
-                return ($result['country'] === $this->_country);
+            $results = \array_filter($results, function($result) use($country)  {
+                return ($result['country'] === $country);
             });
         }
 

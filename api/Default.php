@@ -3,7 +3,7 @@
 namespace MundusMeus;
 
 date_default_timezone_set('Europe/London');
-ini_set('display_errors', false);
+ini_set('display_errors', true);
 
 // Laravel inspired PHP Router
 // Reference: https://github.com/jenssegers/php-router
