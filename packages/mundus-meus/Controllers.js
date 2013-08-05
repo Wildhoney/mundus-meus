@@ -31,6 +31,7 @@ app.controller('GeolocationController', ['$scope', '$http', '$interpolate', '$ti
          * @return {void}
          */
         $scope.setRadius = function setRadius(radius) {
+            $scope.radius = radius;
             $mundusMeus.setRadius(radius.value);
         };
 

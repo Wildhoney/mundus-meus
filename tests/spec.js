@@ -2,7 +2,7 @@ describe('Mundus Meus', function() {
 
     describe('GeolocationController', function() {
 
-        var $httpBackend, $controller, createController;
+        var $httpBackend, createController;
 
         beforeEach(angular.mock.module('mundusMeusApp'));
 
@@ -11,9 +11,11 @@ describe('Mundus Meus', function() {
             $httpBackend = $injector.get('$httpBackend');
             $httpBackend.when('GET', './../api/Geolocate/Nottingham').respond(['firstPlace', 'secondPlace', 'thirdPlace']);
 
+            var $mundusMeus = $injector.get('$mundusMeus');
+
             createController = function createController(name) {
                 var scope = $rootScope.$new();
-                $controller(name, { $scope: $rootScope });
+                $controller(name, { $scope: $rootScope, $mundusMeus: $mundusMeus });
                 return scope;
             };
 
@@ -24,6 +26,12 @@ describe('Mundus Meus', function() {
             scope.getGeolocation('Nottingham');
             $httpBackend.flush();
             expect(scope.results.length).toEqual(3);
+        });
+
+        it ('Should be able to set a custom radius', function() {
+            var scope = createController('GeolocationController');
+            scope.setRadius(5);
+            expect(scope.radius).toEqual(5);
         });
 
     });
