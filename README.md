@@ -2,6 +2,8 @@ Mundus Meus 0.1.0
 ===========
 
 <img src="https://api.travis-ci.org/Wildhoney/mundus-meus.png" alt="Travis" />
+&nbsp;
+<img src="https://badge.fury.io/js/mundus-meus.png" />
 
 Description
 -----------

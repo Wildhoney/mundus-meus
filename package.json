@@ -1,6 +1,6 @@
 {
-  "name": "MundusMeus",
-  "buildName": "mundus-meus.0.1.0",
+  "name": "mundus-meus",
+  "buildName": "mundus-meus",
   "version": "0.1.0",
   "author": "Adam Timberlake",
   "devDependencies": {
