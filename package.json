@@ -1,7 +1,8 @@
 {
   "name": "mundus-meus",
+  "description": "Leaflet.js & Angular.js mapping tool for finding entities based on your location.",
   "buildName": "mundus-meus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Adam Timberlake",
   "devDependencies": {
     "grunt": "~0.4.1"
