@@ -30,7 +30,8 @@ class Geolocator_Nominatim extends Geolocator_Abstract {
         foreach ($data as $datum) {
 
             $record = array(
-                'city'      => ($datum->address->city) ?: $datum->address->county,
+                'city'      => (isset($datum->address->city)) ? $datum->address->city
+                                                              : $datum->address->county,
                 'country'   => $datum->address->country,
                 'latitude'  => $datum->lat,
                 'longitude' => $datum->lon);
